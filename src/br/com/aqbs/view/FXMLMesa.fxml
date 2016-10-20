@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="javafx.scene.layout.Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="460.0" style="-fx-background-color: #95D47A;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <Pane fx:id="pnPrimeiro" layoutX="40.0" layoutY="5.0" prefHeight="30.0" prefWidth="390.0" style="-fx-border-color: #FFFFFF;" />
+      <Pane fx:id="pnSegundo" layoutX="40.0" layoutY="35.0" prefHeight="30.0" prefWidth="390.0" style="-fx-border-color: #FFFFFF;" />
+      <Pane fx:id="pnTerceiro" layoutX="40.0" layoutY="65.0" prefHeight="30.0" prefWidth="390.0" style="-fx-border-color: #FFFFFF;" />
+      <Pane layoutX="40.0" layoutY="95.0" prefHeight="60.0" prefWidth="390.0" style="-fx-border-color: #FFFFFF;">
+         <children>
+            <HBox prefHeight="60.0" prefWidth="390.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="120.0">
+                     <children>
+                        <StackPane prefHeight="30.0" prefWidth="120.0" style="-fx-border-color: #FFFFFF;">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Doze primerios">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </StackPane>
+                        <HBox prefHeight="30.0" prefWidth="120.0" style="-fx-border-color: #FFFFFF;">
+                           <children>
+                              <StackPane prefHeight="30.0" prefWidth="120.0" style="-fx-border-color: #FFFFFF;">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="1 a 18">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="120.0" style="-fx-border-color: #FFFFFF;">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PAR">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="60.0" prefWidth="120.0">
+                     <children>
+                        <StackPane prefHeight="30.0" prefWidth="120.0" style="-fx-border-color: #FFFFFF;">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Doze segundo">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </StackPane>
+                        <HBox prefHeight="30.0" prefWidth="120.0" style="-fx-border-color: #FFFFFF;">
+                           <children>
+                              <StackPane prefHeight="30.0" prefWidth="120.0" style="-fx-border-color: #FFFFFF; -fx-background-color: #FF0000;" />
+                              <StackPane layoutX="11.0" layoutY="11.0" prefHeight="30.0" prefWidth="120.0" style="-fx-border-color: #FFFFFF; -fx-background-color: #000000;" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="130.0" layoutY="10.0" prefHeight="60.0" prefWidth="120.0">
+                     <children>
+                        <StackPane prefHeight="30.0" prefWidth="120.0" style="-fx-border-color: #FFFFFF;">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Doze terceiros">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </StackPane>
+                        <HBox prefHeight="30.0" prefWidth="120.0" style="-fx-border-color: #FFFFFF;">
+                           <children>
+                              <StackPane prefHeight="30.0" prefWidth="120.0" style="-fx-border-color: #FFFFFF;">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="ÍMPAR">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="11.0" layoutY="11.0" prefHeight="30.0" prefWidth="120.0" style="-fx-border-color: #FFFFFF;">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="19 a 36">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane layoutX="10.0" layoutY="5.0" prefHeight="90.0" prefWidth="30.0" style="-fx-border-color: #FFFFFF;">
+         <children>
+            <StackPane prefHeight="90.0" prefWidth="30.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </StackPane>
+         </children>
+      </Pane>
+   </children>
+</fx:root>

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="204.0" prefWidth="360.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="120.0">
+               <children>
+                  <HBox prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1st 12" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txt1st12" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="rec1st12" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1st 12" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txt2st12" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="rec2st12" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="50.0" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1st 12" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txt3st12" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="rec3st12" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="90.0" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1 a 18" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txt1a18" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="rec1a18" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="14.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="130.0" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="19 a 36" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txt19a36" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="rec19a36" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="14.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="120.0">
+               <children>
+                  <HBox prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Coln. 1" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txtcoln1" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="reccoln1" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="14.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Coln. 2" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txtcoln2" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="reccoln2" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="14.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="50.0" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Coln. 3" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txtcoln3" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="reccoln3" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="14.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="90.0" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PAR" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txtpar" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="recpar" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="14.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="130.0" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IMPAR" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txtimpar" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="recimpar" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="14.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="120.0">
+               <children>
+                  <HBox prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="RED" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txtred" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="recred" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="14.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BLACK" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txtblack" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="recblack" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="14.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="50.0" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EST1 B" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txtest1b" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="recest1b" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="14.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="90.0" prefHeight="40.0" prefWidth="120.0" style="-fx-border-color: #000000;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EST2 C" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="txtest2c" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Rectangle fx:id="recest2c" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="25.0" stroke="TRANSPARENT" strokeType="INSIDE" width="25.0">
+                           <HBox.margin>
+                              <Insets left="14.0" top="5.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</fx:root>

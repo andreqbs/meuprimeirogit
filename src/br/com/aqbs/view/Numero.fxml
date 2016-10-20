@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" type="javafx.scene.layout.StackPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <Rectangle fx:id="fundo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" stroke="WHITE" strokeType="INSIDE" width="30.0" />
+      <Text fx:id="valor" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Text>
+   </children>
+</fx:root>
