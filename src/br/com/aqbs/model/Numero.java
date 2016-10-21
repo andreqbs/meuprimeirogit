@@ -15,12 +15,14 @@ public class Numero {
     private String cor;
     private String data;
     private String turno;
+    private String dealer;
 
-    public Numero(String valor, String cor, String data, String turno) {
+    public Numero(String valor, String cor, String data, String turno, String dealer) {
         this.valor = valor;
         this.cor = cor;
         this.data = data;
         this.turno = turno;
+        this.dealer = dealer;
     }
 
     public Numero() {
@@ -65,6 +67,14 @@ public class Numero {
 
     public void setTurno(String turno) {
         this.turno = turno;
+    }
+
+    public String getDealer() {
+        return dealer;
+    }
+
+    public void setDealer(String dealer) {
+        this.dealer = dealer;
     }
     
     

@@ -29,7 +29,7 @@ public class main extends Application {
         Scene scene = new Scene(root);
         stage.setMaximized(false);
         stage.setTitle("Roullete Bet");
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setScene(scene);
         stage.show();
     }

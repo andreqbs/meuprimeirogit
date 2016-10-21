@@ -93,8 +93,28 @@ public class FXMLGraficoController extends Pane {
         
     }
     
-    public void atualizarGrafico2(String valor) {
-        List<Integer> numeros = gr.calculaEstatisticas(Integer.valueOf(valor));
+    public void atualizarGrafico() {
+        List<Integer> numeros = gr.totalRodadas();
+         Timeline tl = new Timeline();
+        tl.stop();
+        tl.getKeyFrames().add(
+                new KeyFrame(Duration.millis(1000),
+                        new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        int i = 0;
+                        for (XYChart.Series<String, Number> series : barChart.getData()) {
+                            for (XYChart.Data<String, Number> data : series.getData()) {
+                                data.setYValue((numeros.get(i)));
+                                i++;
+                            }
+                        }
+                    }
+                }
+                ));
+      //  tl.setCycleCount(Animation.INDEFINITE);
+        tl.setAutoReverse(false);
+        tl.play();
     }
     
     public void atualizarGrafico(String valor) {

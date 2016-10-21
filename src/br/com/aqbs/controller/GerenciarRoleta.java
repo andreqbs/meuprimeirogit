@@ -29,14 +29,36 @@ public class GerenciarRoleta {
         List<Numero> list = numeroDAO.list();
         return list;
     }
-    
-    public void inserirNumero(String valor, String turno) {
+
+    public void inserirNumero(String valor, String turno, String dealer) {
         int v = Integer.parseInt(valor);
-        LocalDateTime timePoint = LocalDateTime.now(); 
+        LocalDateTime timePoint = LocalDateTime.now();
         LocalDate theDate = timePoint.toLocalDate();
-        
-        Numero n = new Numero(valor, pegarCor(v), theDate.toString(), turno);
+
+        Numero n = new Numero(valor, pegarCor(v), theDate.toString(), turno, dealer);
         numeroDAO.create(n);
+    }
+
+    public List<Integer> totalRodadas() {
+
+        List<Numero> numeros = getNumeros();
+
+        List<Integer> total = new ArrayList<>();
+        total.add(0);
+        total.add(0);
+        total.add(0);
+        total.add(parteDaMesa(numeros, 0, 19));
+        total.add(parteDaMesa(numeros, 18, 37));
+        total.add(0);
+        total.add(0);
+        total.add(0);
+        total.add(parImparSeguidos(numeros, true)); //true - par
+        total.add(parImparSeguidos(numeros, false)); //false - impar
+        total.add(corSeguidas(numeros, "Vermelho"));
+        total.add(corSeguidas(numeros, "Preto"));
+        total.add(0);
+
+        return total;
     }
 
     public List<Integer> calculaEstatisticas(int valor) {
@@ -304,6 +326,71 @@ public class GerenciarRoleta {
             l.set(i, 0);
         }
 
+    }
+
+    private int corSeguidas(List<Numero> t, String cor) {
+
+        int aux = 0;
+        int total = 0;
+        for (int i = 0; i < t.size(); i++) {
+            if (t.get(i).getCor().equals(cor)) {
+                aux++;
+            } else {
+                if (aux > total) {
+                    total = aux;
+                }
+                aux = 0;
+            }
+
+        }
+        return total;
+    }
+
+    private int parteDaMesa(List<Numero> t, int incio, int fim) {
+
+        int aux = 0;
+        int total = 0;
+        for (int i = 0; i < t.size(); i++) {
+            int valor = Integer.parseInt(t.get(i).getValor());
+            if (valor > incio && valor < fim) {
+                aux++;
+            } else {
+                if (aux > total) {
+                    total = aux;
+                }
+                aux = 0;
+            }
+
+        }
+        return total;
+    }
+
+    private int parImparSeguidos(List<Numero> t, boolean opcao) {
+
+        int aux = 0;
+        int total = 0;
+        for (int i = 0; i < t.size(); i++) {
+            int valor = Integer.parseInt(t.get(i).getValor());
+            if (opcao) {
+                if (valor % 2 == 0) {
+                    aux++;
+                } else {
+                    if (aux > total) {
+                        total = aux;
+                    }
+                    aux = 0;
+                }
+            } else if (valor % 2 == 1) {
+                aux++;
+            } else {
+                if (aux > total) {
+                    total = aux;
+                }
+                aux = 0;
+            }
+
+        }
+        return total;
     }
 
 }

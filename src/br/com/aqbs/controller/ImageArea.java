@@ -140,11 +140,14 @@ public class ImageArea extends JPanel
       // Compute upper-left and lower-right coordinates for selection rectangle
       // corners.
 
-//      int x1 = (srcx < destx) ? srcx : destx;
-//      int y1 = (srcy < desty) ? srcy : desty;
+//     int x1 = (srcx < destx) ? srcx : destx;
+//     int y1 = (srcy < desty) ? srcy : desty;
       
-      int x1 = 945;
-      int y1 = 241;
+     // int x1 = 945;
+   //   int y1 = 241;
+   
+   int x1 = 730;
+      int y1 = 778;
      System.out.println(x1);
        System.out.println(y1);
        
@@ -154,9 +157,12 @@ public class ImageArea extends JPanel
        
 
 //      int x2 = (srcx > destx) ? srcx : destx;
-//      int y2 = (srcy > desty) ? srcy : desty;
- int x2 = 1210;
-      int y2 = 414;
+//     int y2 = (srcy > desty) ? srcy : desty;
+ //int x2 = 1210;
+  //    int y2 = 414;
+  
+  int x2 = 749;
+      int y2 = 794;
       
         System.out.println(x2);
        System.out.println(y2);

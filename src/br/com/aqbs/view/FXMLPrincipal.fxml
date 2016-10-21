@@ -65,6 +65,8 @@
                   <Insets right="10.0" top="10.0" />
                </VBox.margin>
             </HBox>
+            <Button mnemonicParsing="false" onMouseClicked="#capturarImagem" text="Capturar" />
+            <ComboBox fx:id="cmbDealer" prefWidth="150.0" promptText="Dealler" />
          </children>
       </VBox>
    </right>

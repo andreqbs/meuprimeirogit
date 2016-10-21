@@ -25,7 +25,9 @@ public class NumeroDaoJDBC implements IDaoGeneric {
     private static final String SQL_ALL
             = "SELECT * FROM testeCerto.Numero";
      private static final String SQL_INSERT
-            = "INSERT INTO `Numero`(`valor`, `cor`, `data`,`turno`) VALUES (?, ?, ?, ?)";
+            = "INSERT INTO `Numero`(`valor`, `cor`, `data`,`turno`, `dealer`) VALUES (?, ?, ?, ?, ?)";
+     private static final String SQL_SP_LIST
+            = "call {sp_lista(?)";
    
      private DaoFactory daoFactory;
 
@@ -45,6 +47,7 @@ public class NumeroDaoJDBC implements IDaoGeneric {
             l.getCor(),
             l.getData(),
             l.getTurno(),
+            l.getDealer()
 
         };
 
@@ -96,8 +99,10 @@ public class NumeroDaoJDBC implements IDaoGeneric {
         Numero.setCor(resultSet.getString("cor"));
         Numero.setData(resultSet.getString("data"));
         Numero.setTurno(resultSet.getString("turno"));
+        Numero.setTurno(resultSet.getString("dealer"));
 
         return Numero;
     }
+
 
 }

@@ -15,11 +15,15 @@ import java.util.logging.Logger;
 import javax.imageio.*;
 import javax.imageio.stream.*;
 import javax.swing.*;
+import net.sourceforge.tess4j.ITesseract;
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
+import net.sourceforge.tess4j.util.LoadLibs;
 
 /**
  * This class defines the application GUI and starts the application.
  */
-public class Capture {
+public class Capture extends Thread{
 
     JFrame p;
     int i = 0;
@@ -56,6 +60,10 @@ public class Capture {
      *
      * @param title text appearing in the title bar of Capture's main window
      */
+    public Capture() {
+        
+    }
+    
     public Capture(String title) {
         // Place title in the title bar of Capture's main window.
 
@@ -260,19 +268,19 @@ System.out.println("AQUI6");
 
         mb.add(menu);
 
-        // Install these menus.
-        p.setJMenuBar(mb);
+      //   Install these menus.
+      p.setJMenuBar(mb);
 
-        // Install a scollable ImageArea component.
+     //   Install a scollable ImageArea component.
         p.getContentPane().add(jsp = new JScrollPane(ia));
-System.out.println("AQUI7");
-        // Size main window to half the screen's size, and center window.
+//System.out.println("AQUI7");
+     //    Size main window to half the screen's size, and center window.
         p.setSize(dimScreenSize.width / 2, dimScreenSize.height / 2);
 
-        p.setLocation((dimScreenSize.width - dimScreenSize.width / 2) / 2,
+       p.setLocation((dimScreenSize.width - dimScreenSize.width / 2) / 2,
                 (dimScreenSize.height - dimScreenSize.height / 2) / 2);
 
-        // Display the GUI and start the event-handling thread.
+     //    Display the GUI and start the event-handling thread.
         p.setVisible(true);
     }
 
@@ -289,12 +297,12 @@ System.out.println("AQUI7");
     public void save() {
         
         
-       LocalDateTime a = LocalDateTime.now();
+      // LocalDateTime a = LocalDateTime.now();
 
           
           
         try {
-            ImageIO.write((BufferedImage)ia.getImage(), "png",new File(a+".png"));
+            ImageIO.write((BufferedImage)ia.getImage(), "png", new File("numero.png"));
         } catch (IOException ex) {
             Logger.getLogger(Capture.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -309,7 +317,7 @@ System.out.println("AQUI7");
 
         // Perform the screen capture.
         BufferedImage biScreen;
-          Rectangle aa = new Rectangle(945, 241, 266, 173);
+          Rectangle aa = new Rectangle(730, 778, 19, 16);
                 biScreen = robot.createScreenCapture(aa);
 
         // Show Capture's main window for continued user interaction.
@@ -319,8 +327,8 @@ System.out.println("AQUI7");
         // the scrollbars.
         ia.setImage(biScreen);
 
-        jsp.getHorizontalScrollBar().setValue(0);
-        jsp.getVerticalScrollBar().setValue(0);
+       jsp.getHorizontalScrollBar().setValue(0);
+       jsp.getVerticalScrollBar().setValue(0);
     }
 
     public void crop() {
@@ -338,7 +346,8 @@ System.out.println("AQUI7");
      *
      * @param args array of command-line arguments
      */
-    public static void main(String[] args) {
+    
+    public void caputarImagem()  {
         try {
             robot = new Robot();
         } catch (AWTException e) {
@@ -351,23 +360,51 @@ System.out.println("AQUI7");
 
         // Construct the GUI and begin the event-handling thread.
         Thread thr1 = new Thread();
-        Capture a = new Capture("Capture");
+     //   Capture a = new Capture("Capture");
       thr1.start();
         while (true) {
               
             thr1 = Thread.currentThread();
             try {
                 
-                a.cap();
-                a.save();
-                Thread.sleep(25000);
-                a.cap();
+                cap();
+              save();
+              identificarNumero();
+                Thread.sleep(100000);
+                cap();
             } catch (InterruptedException ex) {
                 System.out.println("Puxa, estava dormindo! Você me acordou");
             }
 
             
         }
-
     }
+  
+    
+    public String identificarNumero() {
+        File imageFile = new File("D:\\Documentos\\NetBeansProjects\\RoulleteBet\\numero.png");
+        ITesseract instance = new Tesseract();  // JNA Interface Mapping
+        // ITesseract instance = new Tesseract1(); // JNA Direct Mapping
+        File tessDataFolder = LoadLibs.extractTessResources("tessdata"); // Maven build bundles English data
+        instance.setDatapath("D:\\Downloads\\Tess4J\\");
+        //instance.setLanguage("eng");
+
+        try {
+            String result = instance.doOCR(imageFile);
+            System.out.println(result);
+            return result;
+        } catch (TesseractException e) {
+            System.err.println(e.getMessage());
+        }
+        
+        return null;
+    }
+    
+    @Override
+    public void run() {
+        caputarImagem();
+        
+    }
+    
+    
 }
