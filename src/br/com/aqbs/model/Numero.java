@@ -16,6 +16,17 @@ public class Numero {
     private String data;
     private String turno;
 
+    public Numero(String valor, String cor, String data, String turno) {
+        this.valor = valor;
+        this.cor = cor;
+        this.data = data;
+        this.turno = turno;
+    }
+
+    public Numero() {
+    }
+
+    
     public int getId() {
         return id;
     }

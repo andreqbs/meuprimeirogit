@@ -6,10 +6,9 @@
 package br.com.aqbs.view;
 
 import br.com.aqbs.controller.GerenciarRoleta;
-import br.com.aqbs.model.Numero;
+import br.com.aqbs.dao.NumeroDaoJDBC;
 import java.io.IOException;
 import java.util.List;
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -121,6 +120,12 @@ public class FXMLGraficoController extends Pane {
       //  tl.setCycleCount(Animation.INDEFINITE);
         tl.setAutoReverse(false);
         tl.play();
+        
+    }
+    
+    public void limparGrafico() {
+        gr.limparApostas();
+       
         
     }
 

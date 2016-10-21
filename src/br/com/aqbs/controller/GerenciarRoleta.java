@@ -8,6 +8,9 @@ package br.com.aqbs.controller;
 import br.com.aqbs.conexao.DaoFactory;
 import br.com.aqbs.dao.NumeroDaoJDBC;
 import br.com.aqbs.model.Numero;
+import br.com.aqbs.model.Som;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +23,20 @@ public class GerenciarRoleta {
     private DaoFactory javabase = DaoFactory.getInstance("javabase.jdbc");
     private NumeroDaoJDBC numeroDAO = javabase.getNumeroDAO();
     private List<Integer> l = new ArrayList<>();
+    private Som s = new Som();
 
     public List<Numero> getNumeros() {
         List<Numero> list = numeroDAO.list();
         return list;
+    }
+    
+    public void inserirNumero(String valor, String turno) {
+        int v = Integer.parseInt(valor);
+        LocalDateTime timePoint = LocalDateTime.now(); 
+        LocalDate theDate = timePoint.toLocalDate();
+        
+        Numero n = new Numero(valor, pegarCor(v), theDate.toString(), turno);
+        numeroDAO.create(n);
     }
 
     public List<Integer> calculaEstatisticas(int valor) {
@@ -55,16 +68,22 @@ public class GerenciarRoleta {
             l.set(0, 0);
         }
 
-        if (valor > 0 && valor < 19) {
+        if (valor > 0 && valor < 19) { //Metade menor
             repeticoes = l.get(3);
             repeticoes++;
             l.set(3, repeticoes);
             l.set(4, 0);
-        } else if (valor > 18 && valor < 37) {
+            if (repeticoes > 4) {
+                s.tone(2000, 2000);
+            }
+        } else if (valor > 18 && valor < 37) { //Metade maior
             repeticoes = l.get(4);
             repeticoes++;
             l.set(4, repeticoes);
             l.set(3, 0);
+            if (repeticoes > 4) {
+                s.tone(3000, 2000);
+            }
         }
 
         if (valor == 1 || valor == 4 || valor == 7 || valor == 10 || valor == 13
@@ -101,11 +120,17 @@ public class GerenciarRoleta {
             repeticoes++;
             l.set(8, repeticoes);
             l.set(9, 0);
+            if (repeticoes > 4) {
+                s.tone(3000, 2000);
+            }
         } else if (valor % 2 == 1) {
             repeticoes = l.get(9);
             repeticoes++;
             l.set(9, repeticoes);
             l.set(8, 0);
+            if (repeticoes > 4) {
+                s.tone(3000, 2000);
+            }
 
         }
         if (pegarCor(valor).equals("Vermelho")) {
@@ -113,12 +138,18 @@ public class GerenciarRoleta {
             repeticoes++;
             l.set(10, repeticoes);
             l.set(11, 0);
+            if (repeticoes > 4) {
+                s.tone(3000, 2000);
+            }
 
         } else if (pegarCor(valor).equals("Preto")) {
             repeticoes = l.get(11);
             repeticoes++;
             l.set(11, repeticoes);
             l.set(10, 0);
+            if (repeticoes > 4) {
+                s.tone(3000, 2000);
+            }
 
         } else {
             l.set(0, 0);
@@ -133,6 +164,7 @@ public class GerenciarRoleta {
             l.set(5, 0);
             l.set(6, 0);
             l.set(7, 0);
+            l.set(8, 0);
 
         }
 
@@ -150,6 +182,22 @@ public class GerenciarRoleta {
 
             l.set(12, 0);
 
+        }
+
+        if (valor == -1) {
+            l.set(0, 0);
+            l.set(1, 0);
+            l.set(2, 0);
+            l.set(3, 0);
+            l.set(4, 0);
+            l.set(9, 0);
+            l.set(10, 0);
+            l.set(11, 0);
+            l.set(12, 0);
+            l.set(5, 0);
+            l.set(6, 0);
+            l.set(7, 0);
+            l.set(8, 0);
         }
 
         return l;
@@ -236,6 +284,24 @@ public class GerenciarRoleta {
             default:
                 return "ERRO";
 
+        }
+
+    }
+
+    public List<Integer> tratarEstatistica(List<Integer> l) {
+
+        List<Integer> t = new ArrayList<>();
+
+        for (int i = 0; i < l.size(); i++) {
+
+        }
+
+        return null;
+    }
+
+    public void limparApostas() {
+        for (int i = 0; i < l.size(); i++) {
+            l.set(i, 0);
         }
 
     }

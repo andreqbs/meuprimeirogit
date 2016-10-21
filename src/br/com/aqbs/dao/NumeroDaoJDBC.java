@@ -25,8 +25,7 @@ public class NumeroDaoJDBC implements IDaoGeneric {
     private static final String SQL_ALL
             = "SELECT * FROM testeCerto.Numero";
      private static final String SQL_INSERT
-            = "INSERT INTO `Numero`(`valor`, `cor`, `data`, "
-            + "`turno` VALUES (?, ?, ?, ?)";
+            = "INSERT INTO `Numero`(`valor`, `cor`, `data`,`turno`) VALUES (?, ?, ?, ?)";
    
      private DaoFactory daoFactory;
 
@@ -42,7 +41,6 @@ public class NumeroDaoJDBC implements IDaoGeneric {
     @Override
     public void create(Numero l) throws IllegalArgumentException, DaoException {
         Object[] values = {
-            l.getId(),
             l.getValor(),
             l.getCor(),
             l.getData(),

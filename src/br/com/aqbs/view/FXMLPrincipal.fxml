@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.aqbs.view.FXMLPrincipalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.aqbs.view.FXMLPrincipalController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -36,9 +37,34 @@
    <right>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="txfNumero" prefHeight="27.0" prefWidth="30.0" />
-            <Button fx:id="btnEnviar" mnemonicParsing="false" onMouseClicked="#enviarNumero" text="Enviar" />
-            <Button mnemonicParsing="false" text="Limpar" />
+            <TextField fx:id="txfNumero" prefHeight="27.0" prefWidth="30.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></TextField>
+            <Button fx:id="btnEnviar" mnemonicParsing="false" onMouseClicked="#enviarNumero" text="Enviar">
+               <VBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </VBox.margin></Button>
+            <Button fx:id="btnLimpar" mnemonicParsing="false" onMouseClicked="#limparEstatisticas" text="Limpar">
+               <VBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </VBox.margin></Button>
+            <HBox prefHeight="50.0" prefWidth="100.0">
+               <children>
+                  <CheckBox fx:id="chkManha" mnemonicParsing="false" text="M" />
+                  <CheckBox fx:id="chkTarde" mnemonicParsing="false" text="T">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin></CheckBox>
+                  <CheckBox fx:id="chkNoite" mnemonicParsing="false" text="N">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin></CheckBox>
+               </children>
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </HBox>
          </children>
       </VBox>
    </right>
