@@ -5,7 +5,10 @@
  */
 package br.com.aqbs.view;
 
+import br.com.aqbs.controller.GerenciarRoleta;
+import br.com.aqbs.model.Numero;
 import java.io.IOException;
+import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -42,6 +45,7 @@ public class FXMLGraficoController extends Pane {
     final static String aposta10 = "Ímpar";
     final static String aposta11 = "Vermelho";
     final static String aposta12 = "Preto";
+     final static String aposta13 = "Quebrando";
 
     @FXML
     private BarChart<String, Number> barChart;
@@ -49,6 +53,10 @@ public class FXMLGraficoController extends Pane {
     private NumberAxis yAxis;
     @FXML
     private CategoryAxis xAxis;
+    
+    private GerenciarRoleta gr = new GerenciarRoleta();
+    
+    private XYChart.Series series1 = new XYChart.Series();
 
     public FXMLGraficoController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLGrafico.fxml"));
@@ -65,7 +73,6 @@ public class FXMLGraficoController extends Pane {
 
     public void gerarGrafico() {
 
-        XYChart.Series series1 = new XYChart.Series();
         xAxis.setLabel("Apostas");
         yAxis.setLabel("% Acerto");
         series1.getData().add(new XYChart.Data(aposta1, 0));
@@ -80,26 +87,41 @@ public class FXMLGraficoController extends Pane {
         series1.getData().add(new XYChart.Data(aposta10, 0));
         series1.getData().add(new XYChart.Data(aposta11, 0));
         series1.getData().add(new XYChart.Data(aposta12, 0));
+        series1.getData().add(new XYChart.Data(aposta13, 0));
 
         barChart.getData().addAll(series1);
-
+        
+        
+    }
+    
+    public void atualizarGrafico2(String valor) {
+        List<Integer> numeros = gr.calculaEstatisticas(Integer.valueOf(valor));
+    }
+    
+    public void atualizarGrafico(String valor) {
+        
+        List<Integer> numeros = gr.calculaEstatisticas(Integer.valueOf(valor));
         Timeline tl = new Timeline();
+        tl.stop();
         tl.getKeyFrames().add(
-                new KeyFrame(Duration.millis(500),
+                new KeyFrame(Duration.millis(1000),
                         new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
+                        int i = 0;
                         for (XYChart.Series<String, Number> series : barChart.getData()) {
                             for (XYChart.Data<String, Number> data : series.getData()) {
-                                data.setYValue(Math.random() * 1000);
+                                data.setYValue((numeros.get(i)));
+                                i++;
                             }
                         }
                     }
                 }
                 ));
-        tl.setCycleCount(Animation.INDEFINITE);
-        tl.setAutoReverse(true);
+      //  tl.setCycleCount(Animation.INDEFINITE);
+        tl.setAutoReverse(false);
         tl.play();
+        
     }
 
 }

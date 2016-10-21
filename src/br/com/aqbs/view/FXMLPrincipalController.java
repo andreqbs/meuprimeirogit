@@ -11,16 +11,12 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -32,7 +28,13 @@ public class FXMLPrincipalController implements Initializable {
     private ImageView imvImage;
     @FXML
     private VBox vbxPrincipal;
+    @FXML
+    private TextField txfNumero;
+    @FXML
+    private Button btnEnviar;
 
+    
+    private FXMLGraficoController gc;
 
     /**
      * Initializes the controller class.
@@ -47,10 +49,10 @@ public class FXMLPrincipalController implements Initializable {
     }
 
     private void load() throws IOException {
-       FXMLGraficoController ec = new FXMLGraficoController();
+       this.gc = new FXMLGraficoController();
        FXMLMesaController mc = new FXMLMesaController(4);
-       vbxPrincipal.getChildren().add(ec);
-       vbxPrincipal.getChildren().add(mc);
+       vbxPrincipal.getChildren().add(gc);
+      // vbxPrincipal.getChildren().add(mc);
 
     }
     
@@ -61,6 +63,13 @@ public class FXMLPrincipalController implements Initializable {
          imvImage.setPreserveRatio(true);
          imvImage.setSmooth(true);
          imvImage.setCache(true);
+    }
+    
+    @FXML
+    private void enviarNumero() {
+        String text = txfNumero.getText();
+        gc.atualizarGrafico(text);
+        
     }
 
 }

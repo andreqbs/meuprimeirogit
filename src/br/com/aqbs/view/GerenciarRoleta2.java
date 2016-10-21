@@ -23,7 +23,11 @@ import javax.imageio.ImageIO;
  *
  * @author aqbs
  */
-public class GerenciarRoleta {
+public class GerenciarRoleta2 {
+
+    GerenciarRoleta2(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     private void getScreen() throws IOException {
 
@@ -49,7 +53,7 @@ public class GerenciarRoleta {
             FileOutputStream fos = new FileOutputStream(file);
             ImageIO.write(bufferedImage, "png", fos);
         } catch (AWTException ex) {
-            Logger.getLogger(GerenciarRoleta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GerenciarRoleta2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
