@@ -8,7 +8,9 @@ package br.com.aqbs.conexao;
 
 
 import br.com.aqbs.dao.DaoProperties;
+import br.com.aqbs.dao.DealerDaoJDBC;
 import br.com.aqbs.dao.NumeroDaoJDBC;
+import br.com.aqbs.dao.TipoDaoJDBC;
 import br.com.aqbs.exception.DaoConfigurationException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -75,6 +77,13 @@ public abstract class DaoFactory {
     
     public NumeroDaoJDBC getNumeroDAO() {
         return new NumeroDaoJDBC(this);
+    }
+
+    public DealerDaoJDBC getDealerDAO() {
+        return new DealerDaoJDBC(this);
+    }
+    public TipoDaoJDBC getTipoDAO() {
+        return new TipoDaoJDBC(this);
     }
 
 

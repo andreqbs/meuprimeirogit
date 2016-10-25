@@ -24,6 +24,11 @@ public class GerenciarRoleta {
     private NumeroDaoJDBC numeroDAO = javabase.getNumeroDAO();
     private List<Integer> l = new ArrayList<>();
     private Som s = new Som();
+    
+    public GerenciarRoleta() {
+        Thread threadDoPdf = new Thread(s);
+         threadDoPdf.start();
+    }
 
     public List<Numero> getNumeros() {
         List<Numero> list = numeroDAO.list();
@@ -38,6 +43,7 @@ public class GerenciarRoleta {
         Numero n = new Numero(valor, pegarCor(v), theDate.toString(), turno, dealer);
         numeroDAO.create(n);
     }
+    
 
     public List<Integer> totalRodadas() {
 
@@ -96,7 +102,7 @@ public class GerenciarRoleta {
             l.set(3, repeticoes);
             l.set(4, 0);
             if (repeticoes > 4) {
-                s.tone(2000, 2000);
+                s.aviso();
             }
         } else if (valor > 18 && valor < 37) { //Metade maior
             repeticoes = l.get(4);
@@ -104,7 +110,7 @@ public class GerenciarRoleta {
             l.set(4, repeticoes);
             l.set(3, 0);
             if (repeticoes > 4) {
-                s.tone(3000, 2000);
+               s.aviso();
             }
         }
 
@@ -143,7 +149,7 @@ public class GerenciarRoleta {
             l.set(8, repeticoes);
             l.set(9, 0);
             if (repeticoes > 4) {
-                s.tone(3000, 2000);
+                s.aviso();
             }
         } else if (valor % 2 == 1) {
             repeticoes = l.get(9);
@@ -151,7 +157,7 @@ public class GerenciarRoleta {
             l.set(9, repeticoes);
             l.set(8, 0);
             if (repeticoes > 4) {
-                s.tone(3000, 2000);
+                s.aviso();
             }
 
         }
@@ -161,7 +167,7 @@ public class GerenciarRoleta {
             l.set(10, repeticoes);
             l.set(11, 0);
             if (repeticoes > 4) {
-                s.tone(3000, 2000);
+                s.aviso();
             }
 
         } else if (pegarCor(valor).equals("Preto")) {
@@ -170,7 +176,7 @@ public class GerenciarRoleta {
             l.set(11, repeticoes);
             l.set(10, 0);
             if (repeticoes > 4) {
-                s.tone(3000, 2000);
+                s.aviso();
             }
 
         } else {

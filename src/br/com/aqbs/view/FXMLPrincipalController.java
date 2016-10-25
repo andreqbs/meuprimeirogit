@@ -6,16 +6,24 @@
 package br.com.aqbs.view;
 
 import br.com.aqbs.controller.Capture;
+import br.com.aqbs.controller.CaptureWindow;
+import br.com.aqbs.controller.GerenciarDealer;
 import br.com.aqbs.controller.GerenciarRoleta;
+import br.com.aqbs.model.Dealer;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -24,6 +32,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -42,8 +52,10 @@ public class FXMLPrincipalController implements Initializable {
 
     private FXMLGraficoController gc;
     private FXMLGraficoController gc2;
-    @FXML
-    private Button btnLimpar;
+   
+    
+    private CapturaController cc;
+   
     @FXML
     private CheckBox chkManha;
     @FXML
@@ -52,10 +64,24 @@ public class FXMLPrincipalController implements Initializable {
     private CheckBox chkNoite;
 
     private GerenciarRoleta gr = new GerenciarRoleta();
+     private GerenciarDealer gd = new GerenciarDealer();
     private Capture c = new Capture();
     @FXML
     private ComboBox<String> cmbDealer;
+    @FXML
+    private TextField txfValor;
+    @FXML
+    private Button btnEnviarAposta;
+    @FXML
+    private ComboBox<?> cmbTipoAposta;
+    @FXML
+    private CheckBox chkWin;
+    @FXML
+    private CheckBox chkLost;
+    @FXML
+    private TextField txfNumeroAnt;
 
+    // private CapturaController cc;
     /**
      * Initializes the controller class.
      */
@@ -73,7 +99,7 @@ public class FXMLPrincipalController implements Initializable {
         this.gc = new FXMLGraficoController();
         this.gc2 = new FXMLGraficoController();
         FXMLMesaController mc = new FXMLMesaController(4);
-        vbxPrincipal.getChildren().addAll(gc, gc2);
+        vbxPrincipal.getChildren().addAll(gc);
         // Construct the GUI and begin the event-handling thread.
 
         // vbxPrincipal.getChildren().add(mc);
@@ -86,6 +112,37 @@ public class FXMLPrincipalController implements Initializable {
         imvImage.setPreserveRatio(true);
         imvImage.setSmooth(true);
         imvImage.setCache(true);
+    }
+
+    @FXML
+    private void capturarImagem() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Captura.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.TRANSPARENT);
+         //   stage.setTitle("teste");
+            Scene scene = new Scene(root, 30, 30);
+            scene.setFill(null);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void inserirDealer() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLDealer.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            // stage.setMaximized(true);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -104,10 +161,11 @@ public class FXMLPrincipalController implements Initializable {
         dealer = cmbDealer.getValue();
         gr.inserirNumero(text, turno, dealer);
         gc2.atualizarGrafico();
+        txfNumeroAnt.setText(text);
+        txfNumero.clear();
 
     }
 
-    @FXML
     private void capturarImagem(MouseEvent event) {
         Thread thr1 = new Thread(c);
         //   Capture a = new Capture("Capture");
@@ -115,19 +173,33 @@ public class FXMLPrincipalController implements Initializable {
         //txfNumero.setText(c.identificarNumero());
     }
 
-    @FXML
-    private void limparEstatisticas(MouseEvent event) {
-    }
-
     private void loadDealer() {
+        
+        List<Dealer> listar = gd.listar();
         ObservableList<String> options
-                = FXCollections.observableArrayList(
-                        "Aguia",
-                        "Marina",
-                        "Option 3"
-                );
+                = FXCollections.observableArrayList();
+        options.clear();
+        for (int i = 0; i < listar.size(); i++) {
+            options.add(listar.get(i).getNome());
+        }
         cmbDealer.setItems(options);
 
+    }
+
+    @FXML
+    private void inserirAposta(ActionEvent event) {
+    }
+
+    @FXML
+    private void loadDealers(ActionEvent event) {
+    }
+
+    @FXML
+    private void enviarAposta(MouseEvent event) {
+    }
+
+    @FXML
+    private void loadApostas(ActionEvent event) {
     }
 
 }

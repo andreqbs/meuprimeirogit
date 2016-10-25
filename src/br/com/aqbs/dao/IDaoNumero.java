@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author aqbs
  */
-public interface IDaoGeneric {
+public interface IDaoNumero {
     
     public abstract Numero find(Integer id) throws DaoException;
 

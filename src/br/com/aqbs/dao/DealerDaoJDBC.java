@@ -15,23 +15,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import static br.com.aqbs.dao.DaoUtil.prepareStatement;
+import br.com.aqbs.model.Dealer;
 
 /**
  *
  * @author aqbs
  */
-public class NumeroDaoJDBC implements IDaoNumero {
+public class DealerDaoJDBC implements IDaoDealer {
 
     private static final String SQL_ALL
-            = "SELECT * FROM estartho_test.Numero";
+            = "SELECT * FROM estartho_test.Dealer";
      private static final String SQL_INSERT
-            = "INSERT INTO `Numero`(`valor`, `cor`, `data`,`turno`, `dealer`) VALUES (?, ?, ?, ?, ?)";
+            = "INSERT INTO `Dealer`(`nome`) VALUES (?)";
      private static final String SQL_SP_LIST
             = "call {sp_lista(?)";
    
      private DaoFactory daoFactory;
 
-    public NumeroDaoJDBC(DaoFactory daoFactory) {
+    public DealerDaoJDBC(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 
@@ -41,13 +42,9 @@ public class NumeroDaoJDBC implements IDaoNumero {
     }
 
     @Override
-    public void create(Numero l) throws IllegalArgumentException, DaoException {
+    public void create(Dealer l) throws IllegalArgumentException, DaoException {
         Object[] values = {
-            l.getValor(),
-            l.getCor(),
-            l.getData(),
-            l.getTurno(),
-            l.getDealer()
+            l.getNome()
 
         };
 
@@ -65,7 +62,7 @@ public class NumeroDaoJDBC implements IDaoNumero {
     }
 
     @Override
-    public void update(Numero l) throws IllegalArgumentException, DaoException {
+    public void update(Dealer l) throws IllegalArgumentException, DaoException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -75,8 +72,8 @@ public class NumeroDaoJDBC implements IDaoNumero {
     }
 
     @Override
-    public List<Numero> list() throws DaoException {
-        List<Numero> Numero = new ArrayList<>();
+    public List<Dealer> list() throws DaoException {
+        List<Dealer> Numero = new ArrayList<>();
 
         try (
                 Connection connection = daoFactory.getConnection();
@@ -92,14 +89,11 @@ public class NumeroDaoJDBC implements IDaoNumero {
         return Numero;
     }
 
-    private static Numero map(ResultSet resultSet) throws SQLException {
-        Numero Numero = new Numero();
-        Numero.setId(resultSet.getInt("idNumero"));
-        Numero.setValor(resultSet.getString("valor"));
-        Numero.setCor(resultSet.getString("cor"));
-        Numero.setData(resultSet.getString("data"));
-        Numero.setTurno(resultSet.getString("turno"));
-        Numero.setTurno(resultSet.getString("dealer"));
+    private static Dealer map(ResultSet resultSet) throws SQLException {
+        Dealer Numero = new Dealer();
+        Numero.setId(resultSet.getInt("idDealer"));
+        Numero.setNome(resultSet.getString("nome"));
+       
 
         return Numero;
     }

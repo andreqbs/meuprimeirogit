@@ -9,65 +9,146 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.aqbs.view.FXMLPrincipalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.aqbs.view.FXMLPrincipalController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Arquivo">
             <items>
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+            <Menu mnemonicParsing="false" text="Visualizar">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Captura">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" onAction="#capturarImagem" text="Capturar" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+            <Menu mnemonicParsing="false" text="Inserir">
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#inserirDealer" text="Dealer" />
+                <MenuItem mnemonicParsing="false" onAction="#inserirAposta" text="Aposta" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>
    <center>
       <VBox fx:id="vbxPrincipal" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="TOP_CENTER" />
    </center>
-   <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+   <bottom>
+      <HBox prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="BOTTOM_RIGHT">
          <children>
-            <TextField fx:id="txfNumero" prefHeight="27.0" prefWidth="30.0">
-               <VBox.margin>
+            <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" text="Servidor">
+               <padding>
                   <Insets top="10.0" />
-               </VBox.margin></TextField>
-            <Button fx:id="btnEnviar" mnemonicParsing="false" onMouseClicked="#enviarNumero" text="Enviar">
-               <VBox.margin>
-                  <Insets left="20.0" top="10.0" />
-               </VBox.margin></Button>
-            <Button fx:id="btnLimpar" mnemonicParsing="false" onMouseClicked="#limparEstatisticas" text="Limpar">
-               <VBox.margin>
-                  <Insets left="20.0" top="10.0" />
-               </VBox.margin></Button>
-            <HBox prefHeight="50.0" prefWidth="100.0">
-               <children>
-                  <CheckBox fx:id="chkManha" mnemonicParsing="false" text="M" />
-                  <CheckBox fx:id="chkTarde" mnemonicParsing="false" text="T">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin></CheckBox>
-                  <CheckBox fx:id="chkNoite" mnemonicParsing="false" text="N">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin></CheckBox>
-               </children>
-               <VBox.margin>
-                  <Insets right="10.0" top="10.0" />
-               </VBox.margin>
-            </HBox>
-            <Button mnemonicParsing="false" onMouseClicked="#capturarImagem" text="Capturar" />
-            <ComboBox fx:id="cmbDealer" prefWidth="150.0" promptText="Dealler" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="10.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </bottom>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="180.0" BorderPane.alignment="CENTER">
+         <children>
+            <TitledPane prefHeight="200.0" prefWidth="184.0" text="Números">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="30.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="txfNumero" prefHeight="27.0" prefWidth="70.0">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField fx:id="txfNumeroAnt" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="70.0" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="btnEnviar" mnemonicParsing="false" onMouseClicked="#enviarNumero" prefHeight="27.0" prefWidth="180.0" text="Enviar">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <ComboBox fx:id="cmbDealer" onAction="#loadDealers" prefHeight="27.0" prefWidth="180.0" promptText="Dealler">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <HBox prefHeight="30.0" prefWidth="200.0">
+                           <children>
+                              <CheckBox fx:id="chkManha" mnemonicParsing="false" text="M">
+                                 <HBox.margin>
+                                    <Insets left="8.0" top="5.0" />
+                                 </HBox.margin>
+                              </CheckBox>
+                              <CheckBox fx:id="chkTarde" mnemonicParsing="false" text="T">
+                                 <HBox.margin>
+                                    <Insets left="8.0" top="5.0" />
+                                 </HBox.margin>
+                              </CheckBox>
+                              <CheckBox fx:id="chkNoite" mnemonicParsing="false" text="N">
+                                 <HBox.margin>
+                                    <Insets left="8.0" top="5.0" />
+                                 </HBox.margin>
+                              </CheckBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+            <TitledPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="184.0" text="Aposta">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <TextField fx:id="txfValor" prefHeight="27.0" prefWidth="100.0" />
+                        <Button fx:id="btnEnviarAposta" mnemonicParsing="false" onMouseClicked="#enviarAposta" prefHeight="27.0" prefWidth="180.0" text="Enviar">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <ComboBox fx:id="cmbTipoAposta" onAction="#loadApostas" prefHeight="27.0" prefWidth="180.0" promptText="Tipo Aposta">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <HBox prefHeight="30.0" prefWidth="200.0">
+                           <children>
+                              <CheckBox fx:id="chkWin" mnemonicParsing="false" text="Win">
+                                 <HBox.margin>
+                                    <Insets left="8.0" top="5.0" />
+                                 </HBox.margin>
+                              </CheckBox>
+                              <CheckBox fx:id="chkLost" mnemonicParsing="false" text="Lost">
+                                 <HBox.margin>
+                                    <Insets left="15.0" top="5.0" />
+                                 </HBox.margin>
+                              </CheckBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
          </children>
       </VBox>
-   </right>
+   </left>
 </BorderPane>

@@ -16,9 +16,13 @@ import javax.sound.sampled.SourceDataLine;
  *
  * @author andreqbs
  */
-public class Som {
+public class Som extends Thread {
 
     private float SAMPLE_RATE = 8000f;
+    
+    public void aviso() {
+         tone(2000, 2000);
+    }
 
     public void tone(int hz, int msecs) {           
         try {
@@ -50,5 +54,11 @@ public class Som {
         sdl.stop();
         sdl.close();
 
+    }
+    
+    @Override
+    public void run() {
+       aviso();
+        
     }
 }

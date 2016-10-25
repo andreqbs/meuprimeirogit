@@ -6,7 +6,6 @@
 package br.com.aqbs.view;
 
 import br.com.aqbs.controller.GerenciarRoleta;
-import br.com.aqbs.dao.NumeroDaoJDBC;
 import java.io.IOException;
 import java.util.List;
 import javafx.animation.KeyFrame;
@@ -17,10 +16,12 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
 
 
@@ -30,7 +31,7 @@ import javafx.event.EventHandler;
  *
  * @author aqbs
  */
-public class FXMLGraficoController extends Pane {
+public class FXMLGraficoController extends VBox {
 
     final static String aposta1 = "1st 12";
     final static String aposta2 = "2n 12";
@@ -56,6 +57,10 @@ public class FXMLGraficoController extends Pane {
     private GerenciarRoleta gr = new GerenciarRoleta();
     
     private XYChart.Series series1 = new XYChart.Series();
+    @FXML
+    private ComboBox<?> cmbDealer;
+    @FXML
+    private Label cmbTipo;
 
     public FXMLGraficoController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLGrafico.fxml"));

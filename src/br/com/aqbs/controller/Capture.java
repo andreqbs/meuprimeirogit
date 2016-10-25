@@ -15,10 +15,10 @@ import java.util.logging.Logger;
 import javax.imageio.*;
 import javax.imageio.stream.*;
 import javax.swing.*;
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.TesseractException;
-import net.sourceforge.tess4j.util.LoadLibs;
+//import net.sourceforge.tess4j.ITesseract;
+//import net.sourceforge.tess4j.Tesseract;
+//import net.sourceforge.tess4j.TesseractException;
+//import net.sourceforge.tess4j.util.LoadLibs;
 
 /**
  * This class defines the application GUI and starts the application.
@@ -67,19 +67,19 @@ public class Capture extends Thread{
     public Capture(String title) {
         // Place title in the title bar of Capture's main window.
 
-        p = new JFrame();
-        p.setTitle(title);
+      //  p = new JFrame();
+       // p.setTitle(title);
 
         // Exit the application if user selects Close from system menu.
         //  setDefaultCloseOperation (EXIT_ON_CLOSE);
         // Save screen dimensions for initially positioning main window and
         // performing screen captures.
         
-        dimScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
+      //  dimScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         // Copy screen dimensions to Rectangle for use with Robot's
         // createScreenCapture() method.
-        rectScreenSize = new Rectangle(dimScreenSize);
+      //  rectScreenSize = new Rectangle(dimScreenSize);
 
         // Construct a save file chooser. Initialize the starting directory to
         // the current directory, do not allow the user to select the "all files"
@@ -365,16 +365,16 @@ System.out.println("AQUI6");
         while (true) {
               
             thr1 = Thread.currentThread();
-            try {
-                
-                cap();
-              save();
-              identificarNumero();
-                Thread.sleep(100000);
-                cap();
-            } catch (InterruptedException ex) {
-                System.out.println("Puxa, estava dormindo! Você me acordou");
-            }
+//            try {
+//                
+//                cap();
+//              save();
+//              identificarNumero();
+//                Thread.sleep(100000);
+//                cap();
+//            } catch (Exception ex) {
+//                System.out.println("Puxa, estava dormindo! Você me acordou");
+//            }
 
             
         }
@@ -382,20 +382,20 @@ System.out.println("AQUI6");
   
     
     public String identificarNumero() {
-        File imageFile = new File("D:\\Documentos\\NetBeansProjects\\RoulleteBet\\numero.png");
-        ITesseract instance = new Tesseract();  // JNA Interface Mapping
-        // ITesseract instance = new Tesseract1(); // JNA Direct Mapping
-        File tessDataFolder = LoadLibs.extractTessResources("tessdata"); // Maven build bundles English data
-        instance.setDatapath("D:\\Downloads\\Tess4J\\");
-        //instance.setLanguage("eng");
-
-        try {
-            String result = instance.doOCR(imageFile);
-            System.out.println(result);
-            return result;
-        } catch (TesseractException e) {
-            System.err.println(e.getMessage());
-        }
+//        File imageFile = new File("D:\\Documentos\\NetBeansProjects\\RoulleteBet\\numero.png");
+//        ITesseract instance = new Tesseract();  // JNA Interface Mapping
+//        // ITesseract instance = new Tesseract1(); // JNA Direct Mapping
+//        File tessDataFolder = LoadLibs.extractTessResources("tessdata"); // Maven build bundles English data
+//        instance.setDatapath("D:\\Downloads\\Tess4J\\");
+//        //instance.setLanguage("eng");
+//
+//        try {
+//            String result = instance.doOCR(imageFile);
+//            System.out.println(result);
+//            return result;
+//        } catch (TesseractException e) {
+//            System.err.println(e.getMessage());
+//        }
         
         return null;
     }

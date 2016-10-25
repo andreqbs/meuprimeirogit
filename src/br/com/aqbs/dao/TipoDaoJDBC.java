@@ -7,7 +7,6 @@ package br.com.aqbs.dao;
 
 import br.com.aqbs.conexao.DaoFactory;
 import br.com.aqbs.exception.DaoException;
-import br.com.aqbs.model.Numero;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,39 +14,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import static br.com.aqbs.dao.DaoUtil.prepareStatement;
+import br.com.aqbs.model.Tipo;
 
 /**
  *
  * @author aqbs
  */
-public class NumeroDaoJDBC implements IDaoNumero {
+public class TipoDaoJDBC implements IDaoTipo {
 
     private static final String SQL_ALL
-            = "SELECT * FROM estartho_test.Numero";
+            = "SELECT * FROM testeCerto.Tipo";
      private static final String SQL_INSERT
-            = "INSERT INTO `Numero`(`valor`, `cor`, `data`,`turno`, `dealer`) VALUES (?, ?, ?, ?, ?)";
+            = "INSERT INTO `Tipo`(`nome`, `pagamento`) VALUES (?, ?)";
      private static final String SQL_SP_LIST
             = "call {sp_lista(?)";
    
      private DaoFactory daoFactory;
 
-    public NumeroDaoJDBC(DaoFactory daoFactory) {
+    public TipoDaoJDBC(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 
     @Override
-    public Numero find(Integer id) throws DaoException {
+    public Tipo find(Integer id) throws DaoException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void create(Numero l) throws IllegalArgumentException, DaoException {
+    public void create(Tipo l) throws IllegalArgumentException, DaoException {
         Object[] values = {
-            l.getValor(),
-            l.getCor(),
-            l.getData(),
-            l.getTurno(),
-            l.getDealer()
+            l.getNome()
 
         };
 
@@ -65,7 +61,7 @@ public class NumeroDaoJDBC implements IDaoNumero {
     }
 
     @Override
-    public void update(Numero l) throws IllegalArgumentException, DaoException {
+    public void update(Tipo l) throws IllegalArgumentException, DaoException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -75,8 +71,8 @@ public class NumeroDaoJDBC implements IDaoNumero {
     }
 
     @Override
-    public List<Numero> list() throws DaoException {
-        List<Numero> Numero = new ArrayList<>();
+    public List<Tipo> list() throws DaoException {
+        List<Tipo> Numero = new ArrayList<>();
 
         try (
                 Connection connection = daoFactory.getConnection();
@@ -92,14 +88,12 @@ public class NumeroDaoJDBC implements IDaoNumero {
         return Numero;
     }
 
-    private static Numero map(ResultSet resultSet) throws SQLException {
-        Numero Numero = new Numero();
-        Numero.setId(resultSet.getInt("idNumero"));
-        Numero.setValor(resultSet.getString("valor"));
-        Numero.setCor(resultSet.getString("cor"));
-        Numero.setData(resultSet.getString("data"));
-        Numero.setTurno(resultSet.getString("turno"));
-        Numero.setTurno(resultSet.getString("dealer"));
+    private static Tipo map(ResultSet resultSet) throws SQLException {
+        Tipo Numero = new Tipo();
+        Numero.setId(resultSet.getInt("idTipo"));
+        Numero.setNome(resultSet.getString("nome"));
+        Numero.setPagamento(resultSet.getInt("pagamento"));
+       
 
         return Numero;
     }
