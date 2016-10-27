@@ -6,15 +6,7 @@
 package br.com.aqbs.view;
 
 import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
-import javafx.geometry.Point2D;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.image.Image;
 import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
-import javafx.scene.paint.Color;
 import com.sun.glass.ui.Pixels;
 import com.sun.glass.ui.Robot;
 import java.io.File;
@@ -22,6 +14,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.IntBuffer;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -43,7 +37,7 @@ import javax.imageio.ImageIO;
  *
  * @author andreqbs
  */
-public class CapturaController implements Initializable {
+public class CapturaController extends Thread {
 
     @FXML
     private Pane pnPrincipal;
@@ -54,17 +48,33 @@ public class CapturaController implements Initializable {
     private int y = 0;
     private int largura = 0;
     private int altura = 0;
-    Stage primaryStage;
+    static Stage primaryStage;
+    Robot robot = com.sun.glass.ui.Application.GetApplication().createRobot();
+    Pixels glassPixels;
+    Image image;
 
     public static final int BYTE_BUFFER_BYTES_PER_COMPONENT = 1;
     public static final int INT_BUFFER_BYTES_PER_COMPONENT = 4;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void showWindow() {
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Captura.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            primaryStage = stage;
+            stage.initStyle(StageStyle.TRANSPARENT);
+            //   stage.setTitle("teste");
+            Scene scene = new Scene(root, 29, 29);
+            scene.setFill(null);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        runa();
+
     }
 
     @FXML
@@ -91,36 +101,30 @@ public class CapturaController implements Initializable {
                 primaryStage = (Stage) source.getScene().getWindow();
                 primaryStage.setX(event.getScreenX() - xOffset);
                 primaryStage.setY(event.getScreenY() - yOffset);
+
             }
         });
     }
 
-    @FXML
     private void capturar() {
-        pnPrincipal.setOnMouseMoved(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Node source = (Node) event.getSource();
-                primaryStage = (Stage) source.getScene().getWindow();
-                xOffset = primaryStage.getX();
-                yOffset = primaryStage.getY();
-                x = (int) xOffset;
-                y = (int) yOffset;
-                largura = (int) primaryStage.getWidth();
-                altura = (int) primaryStage.getHeight();
-                Robot robot = com.sun.glass.ui.Application.GetApplication().createRobot();
-                Pixels glassPixels = robot.getScreenCapture(x, y, largura, altura);
-                Image image = convertFromGlassPixels(glassPixels);
 
-                File file = new File("foto.png");
+//        primaryStage = (Stage) pnPrincipal.getScene().getWindow();
+        xOffset = primaryStage.getX();
+        yOffset = primaryStage.getY();
+        x = (int) xOffset;
+        y = (int) yOffset;
+        largura = (int) primaryStage.getWidth();
+        altura = (int) primaryStage.getHeight();
+        glassPixels = robot.getScreenCapture(x, y, largura, altura);
+        image = convertFromGlassPixels(glassPixels);
 
-                try {
-                    ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-                } catch (IOException e) {
-                    // TODO: handle exception here
-                }
-            }
-        });
+        File file = new File("foto.png");
+
+        try {
+            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+        } catch (IOException e) {
+            // TODO: handle exception here
+        }
     }
 
     private Image convertFromGlassPixels(Pixels glassPixels) {
@@ -157,6 +161,25 @@ public class CapturaController implements Initializable {
     private void writeByteBufferToImage(ByteBuffer byteBuffer,
             WritableImage image) {
         throw new UnsupportedOperationException("Writing from byte buffer is not supported.");
+    }
+
+    public Task runa() {
+        Task task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                Platform.runLater(() -> {
+                    
+                    capturar();
+                });
+
+                return null;
+            }
+        };
+
+        return task;
+       
+        
+
     }
 
 //Now this is the region which we are going to capture              

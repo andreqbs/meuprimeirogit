@@ -27,7 +27,7 @@ public class GerenciarRoleta {
     
     public GerenciarRoleta() {
         Thread threadDoPdf = new Thread(s);
-         threadDoPdf.start();
+        // threadDoPdf.start();
     }
 
     public List<Numero> getNumeros() {

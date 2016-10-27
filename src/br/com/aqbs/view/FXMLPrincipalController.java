@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,10 +53,9 @@ public class FXMLPrincipalController implements Initializable {
 
     private FXMLGraficoController gc;
     private FXMLGraficoController gc2;
-   
-    
+
     private CapturaController cc;
-   
+
     @FXML
     private CheckBox chkManha;
     @FXML
@@ -64,7 +64,7 @@ public class FXMLPrincipalController implements Initializable {
     private CheckBox chkNoite;
 
     private GerenciarRoleta gr = new GerenciarRoleta();
-     private GerenciarDealer gd = new GerenciarDealer();
+    private GerenciarDealer gd = new GerenciarDealer();
     private Capture c = new Capture();
     @FXML
     private ComboBox<String> cmbDealer;
@@ -116,19 +116,25 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void capturarImagem() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Captura.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.TRANSPARENT);
-         //   stage.setTitle("teste");
-            Scene scene = new Scene(root, 30, 30);
-            scene.setFill(null);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        cc = new CapturaController();
+        cc.showWindow();
+        Thread a = new Thread(cc.runa());
+        a.start();
+        
+        
+//         try {
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Captura.fxml"));
+//            Parent root = (Parent) fxmlLoader.load();
+//            Stage stage = new Stage();
+//            stage.initStyle(StageStyle.TRANSPARENT);
+//            //   stage.setTitle("teste");
+//            Scene scene = new Scene(root, 29, 29);
+//            scene.setFill(null);
+//            stage.setScene(scene);
+//            stage.show();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     @FXML
@@ -174,7 +180,7 @@ public class FXMLPrincipalController implements Initializable {
     }
 
     private void loadDealer() {
-        
+
         List<Dealer> listar = gd.listar();
         ObservableList<String> options
                 = FXCollections.observableArrayList();

@@ -8,4 +8,4 @@
 <?import javafx.scene.layout.*?>
 
 
-<Pane fx:id="pnPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseNaoPressioanado" onMouseMoved="#capturar" onMousePressed="#mousePressioanado" opacity="0.41" prefHeight="30.0" prefWidth="30.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.aqbs.view.CapturaController" />
+<Pane fx:id="pnPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseNaoPressioanado" onMousePressed="#mousePressioanado" opacity="0.41" prefHeight="30.0" prefWidth="30.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.aqbs.view.CapturaController" />
