@@ -117,7 +117,7 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void capturarImagem() {
-        CaptureTeste x = new CaptureTeste();
+        CaptureTeste x = new CaptureTeste(13,20);
          Capture a = new Capture();
         
 //        cc = new CapturaController();

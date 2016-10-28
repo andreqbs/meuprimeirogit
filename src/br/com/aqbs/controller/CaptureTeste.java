@@ -36,9 +36,13 @@ public class CaptureTeste {
     JFrame p;
 
     public static boolean windowReader = false;
+    private int largura;
+    private int altura;
 
-    public CaptureTeste() {
+    public CaptureTeste(int altura, int largura) {
 
+        this.altura = altura;
+        this.largura = largura;
         windowReader = true;
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd = ge.getDefaultScreenDevice();
@@ -60,7 +64,7 @@ public class CaptureTeste {
             setUndecorated(true);
 
             setLayout(new GridBagLayout());
-            setSize(40, 40);
+            setSize(largura, altura);
             setLocation(200, 200);
             ThreadReadData3 t = new ThreadReadData3();
             t.windowReference = this;
@@ -104,7 +108,7 @@ public class CaptureTeste {
                         }
 
                     }
-                    this.sleep(5000);
+                    this.sleep(100000);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

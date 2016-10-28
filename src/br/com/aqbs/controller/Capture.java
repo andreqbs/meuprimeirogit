@@ -2,6 +2,8 @@ package br.com.aqbs.controller;
 
 // Capture.java
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
@@ -12,8 +14,13 @@ import net.sourceforge.tess4j.TesseractException;
 public class Capture extends Thread {
 
     ITesseract instance = new Tesseract();
+    List<String> numeros = new ArrayList<>();
 
     public Capture() {
+
+        for (int i = 0; i < 38; i++) {
+            numeros.add(String.valueOf(i));
+        }
         ThreadReadData3 t = new ThreadReadData3();
         t.start();
     }
@@ -36,17 +43,34 @@ public class Capture extends Thread {
         return null;
     }
 
-    class ThreadReadData3 extends Thread {
+    public void asa() {
+    }
 
+    public String traduzirNumero(String valor) {
+
+        String resposta = null;
+        
+        if (numeros.contains(valor)) {
+            resposta = valor;
+        } else if (valor.equals("Ts")) {
+            resposta = "25";
+        } else if (valor.equals("E")) {
+            resposta = "36";
+        } else if (valor.equals("w")) {
+            resposta = "19";
+        }
+        return resposta;
+    }
+
+    class ThreadReadData3 extends Thread {
 
         @Override
         public void run() {
-            System.out.println("Capture");
             while (true) {
                 if (CaptureTeste.windowReader) {
                     try {
-                        identificarNumero();
-                        this.sleep(7000);
+                        System.out.println(traduzirNumero(identificarNumero()));
+                        this.sleep(108000);
                     } catch (Exception e) {
                         e.printStackTrace();
 
@@ -57,4 +81,5 @@ public class Capture extends Thread {
         }
 
     }
+
 }
