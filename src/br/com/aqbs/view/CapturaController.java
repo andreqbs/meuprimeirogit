@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.IntBuffer;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
@@ -37,7 +39,7 @@ import javax.imageio.ImageIO;
  *
  * @author andreqbs
  */
-public class CapturaController extends Thread {
+public class CapturaController {
 
     @FXML
     private Pane pnPrincipal;
@@ -64,7 +66,6 @@ public class CapturaController extends Thread {
             Stage stage = new Stage();
             primaryStage = stage;
             stage.initStyle(StageStyle.TRANSPARENT);
-            //   stage.setTitle("teste");
             Scene scene = new Scene(root, 29, 29);
             scene.setFill(null);
             stage.setScene(scene);
@@ -72,9 +73,6 @@ public class CapturaController extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        runa();
-
     }
 
     @FXML
@@ -106,7 +104,7 @@ public class CapturaController extends Thread {
         });
     }
 
-    private void capturar() {
+    public void capturar() {
 
 //        primaryStage = (Stage) pnPrincipal.getScene().getWindow();
         xOffset = primaryStage.getX();
@@ -118,10 +116,10 @@ public class CapturaController extends Thread {
         glassPixels = robot.getScreenCapture(x, y, largura, altura);
         image = convertFromGlassPixels(glassPixels);
 
-        File file = new File("foto.png");
+        File file = new File("foto.jpg");
 
         try {
-            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "jpg", file);
         } catch (IOException e) {
             // TODO: handle exception here
         }
@@ -156,6 +154,7 @@ public class CapturaController extends Thread {
                 pixelWriter.setArgb(x, y, argb);
             }
         }
+
     }
 
     private void writeByteBufferToImage(ByteBuffer byteBuffer,
@@ -163,24 +162,13 @@ public class CapturaController extends Thread {
         throw new UnsupportedOperationException("Writing from byte buffer is not supported.");
     }
 
-    public Task runa() {
-        Task task = new Task<Void>() {
+    public void teste() {
+        Platform.runLater(new Runnable() {
             @Override
-            protected Void call() throws Exception {
-                Platform.runLater(() -> {
-                    
-                    capturar();
-                });
-
-                return null;
+            public void run() {
+                capturar();
             }
-        };
-
-        return task;
-       
-        
-
+        });
     }
 
-//Now this is the region which we are going to capture              
 }

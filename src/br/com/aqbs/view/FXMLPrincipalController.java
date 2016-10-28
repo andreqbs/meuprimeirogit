@@ -5,7 +5,9 @@
  */
 package br.com.aqbs.view;
 
+
 import br.com.aqbs.controller.Capture;
+import br.com.aqbs.controller.CaptureTeste;
 import br.com.aqbs.controller.CaptureWindow;
 import br.com.aqbs.controller.GerenciarDealer;
 import br.com.aqbs.controller.GerenciarRoleta;
@@ -65,7 +67,6 @@ public class FXMLPrincipalController implements Initializable {
 
     private GerenciarRoleta gr = new GerenciarRoleta();
     private GerenciarDealer gd = new GerenciarDealer();
-    private Capture c = new Capture();
     @FXML
     private ComboBox<String> cmbDealer;
     @FXML
@@ -87,12 +88,12 @@ public class FXMLPrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            load();
-            loadDealer();
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            //load();
+//           // loadDealer();
+//        } catch (IOException ex) {
+//            Logger.getLogger(FXMLPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     private void load() throws IOException {
@@ -116,10 +117,16 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void capturarImagem() {
-        cc = new CapturaController();
-        cc.showWindow();
-        Thread a = new Thread(cc.runa());
-        a.start();
+        CaptureTeste x = new CaptureTeste();
+         Capture a = new Capture();
+        
+//        cc = new CapturaController();
+//        cc.showWindow();
+//        ThreadReadData x = new ThreadReadData();
+//        x.a = cc;
+//        Thread a = new Thread(x);
+//        a.setDaemon(true);
+//        a.start();
         
         
 //         try {
@@ -173,10 +180,7 @@ public class FXMLPrincipalController implements Initializable {
     }
 
     private void capturarImagem(MouseEvent event) {
-        Thread thr1 = new Thread(c);
-        //   Capture a = new Capture("Capture");
-        thr1.start();
-        //txfNumero.setText(c.identificarNumero());
+        
     }
 
     private void loadDealer() {

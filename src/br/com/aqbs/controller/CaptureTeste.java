@@ -7,6 +7,7 @@ package br.com.aqbs.controller;
 
 import java.awt.AWTException;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.HeadlessException;
@@ -33,74 +34,106 @@ import javax.swing.JFrame;
 public class CaptureTeste {
 
     JFrame p;
-    
-    public static CaptureTeste windowReader;
+
+    public static boolean windowReader = false;
 
     public CaptureTeste() {
 
-       GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-       GraphicsDevice gd =  ge.getDefaultScreenDevice();
-       
-       if(!gd.isWindowTranslucencySupported(GraphicsDevice.WindowTranslucency.TRANSLUCENT)) {
-           System.exit(0);
-       }
-       
-       TransparentFrame tw = new TransparentFrame();
-       
+        windowReader = true;
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice gd = ge.getDefaultScreenDevice();
+
+        if (!gd.isWindowTranslucencySupported(GraphicsDevice.WindowTranslucency.TRANSLUCENT)) {
+            System.exit(0);
+        }
+
+        TransparentFrame tw = new TransparentFrame();
+        tw.setOpacity(0.3f);
+        tw.setVisible(true);
 
     }
-    
-    class TransparentFrame extends JFrame implements MouseMotionListener, ActionListener
-    {
-        
+
+    class TransparentFrame extends JFrame implements MouseMotionListener, ActionListener {
+
         public TransparentFrame() {
-            addMouseListener(this);
+            addMouseMotionListener(this);
             setUndecorated(true);
-        
+
             setLayout(new GridBagLayout());
-            setSize(150,150);
+            setSize(40, 40);
             setLocation(200, 200);
-            ThreadReadData t = new ThreadReadData();
-            t.windowRefence = this;
-                    t.start();
+            ThreadReadData3 t = new ThreadReadData3();
+            t.windowReference = this;
+            t.start();
         }
 
         @Override
         public void mouseDragged(MouseEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            this.setLocation(e.getLocationOnScreen().x - this.getSize().width / 2, e.getLocationOnScreen().y - this.getSize().height / 2);
         }
 
         @Override
         public void mouseMoved(MouseEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            
+        }
+    }
+
+    class ThreadReadData3 extends Thread {
+
+        public TransparentFrame windowReference;
+
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    if (this.windowReference.isShowing()) {
+                        Robot robot;
+                        try {
+                            robot = new Robot();
+
+                            BufferedImage screenshot = robot.createScreenCapture(new Rectangle(windowReference.getLocationOnScreen().x, windowReference.getLocationOnScreen().y, windowReference.getSize().width, windowReference.getSize().height));
+                            ImageIO.write(screenshot, "png", new File("foto.png"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+
+                        }
+
+                    }
+                    this.sleep(5000);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+
+        }
+
+        public void capturar() {
+            Rectangle rect = p.getBounds();
+
+            try {
+                String format = "png";
+                String fileName = p.getName() + "." + format;
+                BufferedImage captureImage
+                        = new BufferedImage(rect.width, rect.height,
+                                BufferedImage.TYPE_INT_ARGB);
+                p.paint(captureImage.getGraphics());
+
+                ImageIO.write(captureImage, format, new File(fileName));
+
+                System.out.printf("The screenshot of %s was saved!", p.getName());
+            } catch (IOException ex) {
+                System.err.println(ex);
+            }
         }
         
+
     }
-
-    public void capturar() {
-        Rectangle rect = p.getBounds();
-
-        try {
-            String format = "png";
-            String fileName = p.getName() + "." + format;
-            BufferedImage captureImage
-                    = new BufferedImage(rect.width, rect.height,
-                            BufferedImage.TYPE_INT_ARGB);
-            p.paint(captureImage.getGraphics());
-
-            ImageIO.write(captureImage, format, new File(fileName));
-
-            System.out.printf("The screenshot of %s was saved!", p.getName());
-        } catch (IOException ex) {
-            System.err.println(ex);
-        }
-    }
-
-    
-
+ 
+  
 }
