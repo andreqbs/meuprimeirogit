@@ -5,19 +5,16 @@
  */
 package br.com.aqbs.view;
 
-
 import br.com.aqbs.controller.Capture;
 import br.com.aqbs.controller.CaptureTeste;
-import br.com.aqbs.controller.CaptureWindow;
 import br.com.aqbs.controller.GerenciarDealer;
 import br.com.aqbs.controller.GerenciarRoleta;
 import br.com.aqbs.model.Dealer;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -34,9 +31,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -52,21 +50,12 @@ public class FXMLPrincipalController implements Initializable {
     private TextField txfNumero;
     @FXML
     private Button btnEnviar;
-
-    private FXMLGraficoController gc;
-    private FXMLGraficoController gc2;
-
-    private CapturaController cc;
-
     @FXML
     private CheckBox chkManha;
     @FXML
     private CheckBox chkTarde;
     @FXML
     private CheckBox chkNoite;
-
-    private GerenciarRoleta gr = new GerenciarRoleta();
-    private GerenciarDealer gd = new GerenciarDealer();
     @FXML
     private ComboBox<String> cmbDealer;
     @FXML
@@ -81,6 +70,27 @@ public class FXMLPrincipalController implements Initializable {
     private CheckBox chkLost;
     @FXML
     private TextField txfNumeroAnt;
+    @FXML
+    private TextField txfNovaAposta;
+    @FXML
+    private HBox hbxNumeros1;
+    @FXML
+    private HBox hbxNumeros2;
+    @FXML
+    private HBox hbxNumeros3;
+    @FXML
+    private HBox hbxNumeros4;
+    @FXML
+    private HBox hbxNumeros5;
+    @FXML
+    private HBox hbxNumeros6;
+
+    private FXMLGraficoController gc;
+    private FXMLGraficoController gc2;
+    private CapturaController cc;
+    private GerenciarRoleta gr = new GerenciarRoleta();
+    private GerenciarDealer gd = new GerenciarDealer();
+    private Capture a;
 
     // private CapturaController cc;
     /**
@@ -88,12 +98,16 @@ public class FXMLPrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        try {
-//            //load();
-//           // loadDealer();
-//        } catch (IOException ex) {
-//            Logger.getLogger(FXMLPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            load();
+            loadNumeros();
+            //          loadDealer();
+        } catch (IOException ex) {
+            System.out.println("Erro ao iniciar servidor");
+        }
+        teste a = new teste();
+        Thread x = new Thread(a);
+        x.start();
     }
 
     private void load() throws IOException {
@@ -101,9 +115,7 @@ public class FXMLPrincipalController implements Initializable {
         this.gc2 = new FXMLGraficoController();
         FXMLMesaController mc = new FXMLMesaController(4);
         vbxPrincipal.getChildren().addAll(gc);
-        // Construct the GUI and begin the event-handling thread.
 
-        // vbxPrincipal.getChildren().add(mc);
     }
 
     private void loadImage() {
@@ -117,9 +129,9 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void capturarImagem() {
-        CaptureTeste x = new CaptureTeste(13,20);
-         Capture a = new Capture();
-        
+        CaptureTeste x = new CaptureTeste(14, 21);
+        a = new Capture();
+
 //        cc = new CapturaController();
 //        cc.showWindow();
 //        ThreadReadData x = new ThreadReadData();
@@ -127,8 +139,6 @@ public class FXMLPrincipalController implements Initializable {
 //        Thread a = new Thread(x);
 //        a.setDaemon(true);
 //        a.start();
-        
-        
 //         try {
 //            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Captura.fxml"));
 //            Parent root = (Parent) fxmlLoader.load();
@@ -153,8 +163,8 @@ public class FXMLPrincipalController implements Initializable {
             // stage.setMaximized(true);
             stage.setScene(new Scene(root));
             stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Erro ao gerar Dealer");
         }
     }
 
@@ -172,15 +182,11 @@ public class FXMLPrincipalController implements Initializable {
             turno = "N";
         }
         dealer = cmbDealer.getValue();
-        gr.inserirNumero(text, turno, dealer);
+        gr.inserirNumero(text);
         gc2.atualizarGrafico();
         txfNumeroAnt.setText(text);
         txfNumero.clear();
 
-    }
-
-    private void capturarImagem(MouseEvent event) {
-        
     }
 
     private void loadDealer() {
@@ -194,6 +200,25 @@ public class FXMLPrincipalController implements Initializable {
         }
         cmbDealer.setItems(options);
 
+    }
+
+    private void loadNumeros() {
+        for (int i = 0; i < 24; i++) {
+            NumeroController n = new NumeroController("X");
+            if (i < 4) {
+                hbxNumeros1.getChildren().add(n);
+            } else if (i > 3 && i < 8) {
+                hbxNumeros2.getChildren().add(n);
+            } else if (i > 7 && i < 12) {
+                hbxNumeros3.getChildren().add(n);
+            } else if (i > 11 && i < 16) {
+                hbxNumeros4.getChildren().add(n);
+            } else if (i > 15 && i < 20) {
+                hbxNumeros5.getChildren().add(n);
+            } else if (i > 19 && i < 24) {
+                hbxNumeros6.getChildren().add(n);
+            }
+        }
     }
 
     @FXML
@@ -210,6 +235,103 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void loadApostas(ActionEvent event) {
+    }
+
+    private class teste extends Task<Void> {
+
+        int contador = 4;
+        boolean flag = false;
+        String cor;
+        List<String> numerosa = new ArrayList<>();
+
+        @Override
+        protected Void call() throws Exception {
+            while (true) {
+                try {
+                    if (flag) {
+                        numerosa.add(0, a.getValor());
+                        cor = gr.pegarCor(Integer.valueOf(a.getValor()));
+                        System.out.println(a.getValor());
+                        System.out.println(numerosa.size());
+                        for (int i = 0; i < numerosa.size(); i++) {
+                            if (i < 4) {
+                                NumeroController na = (NumeroController) hbxNumeros1.getChildren().get(i);
+                                if (cor.equals("Preto")) {
+                                    na.setFundo(Color.BLACK);
+                                } else if (cor.equals("Vermelho")) {
+                                    na.setFundo(Color.RED);
+                                }
+                                na.setValor(numerosa.get(i));
+
+                            } else if (i > 3 && i < 8) {
+                                NumeroController na = (NumeroController) hbxNumeros2.getChildren().get(i - contador);
+//                                if (cor.equals("Preto")) {
+//                                    na.setFundo(Color.BLACK);
+//                                } else if (cor.equals("Vermelhor")) {
+//                                    na.setFundo(Color.RED);
+//                                }
+                                na.setValor(numerosa.get(i));
+                                contador = 4;
+                            } else if (i > 7 && i < 12) {
+                                NumeroController na = (NumeroController) hbxNumeros3.getChildren().get(i - contador);
+//                                if (cor.equals("Preto")) {
+//                                    na.setFundo(Color.BLACK);
+//                                } else if (cor.equals("Vermelhor")) {
+//                                    na.setFundo(Color.RED);
+//                                }
+                                na.setValor(numerosa.get(i));
+                                contador = 8;
+                            } else if (i > 11 && i < 16) {
+                                NumeroController na = (NumeroController) hbxNumeros4.getChildren().get(i - contador);
+//                                if (cor.equals("Preto")) {
+//                                    na.setFundo(Color.BLACK);
+//                                } else if (cor.equals("Vermelhor")) {
+//                                    na.setFundo(Color.RED);
+//                                }
+                                na.setValor(numerosa.get(i));
+                                contador = 12;
+                            } else if (i > 15 && i < 20) {
+                                NumeroController na = (NumeroController) hbxNumeros5.getChildren().get(i - contador);
+//                                if (cor.equals("Preto")) {
+//                                    na.setFundo(Color.BLACK);
+//                                } else if (cor.equals("Vermelhor")) {
+//                                    na.setFundo(Color.RED);
+//                                }
+                                na.setValor(numerosa.get(i));
+                                contador = 16;
+                            } else if (i > 19 && i < 24) {
+                                NumeroController na = (NumeroController) hbxNumeros6.getChildren().get(i - contador);
+//                                if (cor.equals("Preto")) {
+//                                    na.setFundo(Color.BLACK);
+//                                } else if (cor.equals("Vermelhor")) {
+//                                    na.setFundo(Color.RED);
+//                                }
+                                na.setValor(numerosa.get(i));
+                                contador = 19;
+                                if (numerosa.size() > 25) {
+                                    numerosa.remove(24);
+                                    contador = 4;
+                                }
+                            }
+
+                        }
+                    }
+                    flag = true;
+                    System.out.println("quase indo dormir");
+                    //hbxNumeros1.getc
+                    Thread.sleep(83000);
+
+                } catch (InterruptedException interrupted) {
+
+                    System.out.println("saindo break");
+                    break;
+
+                }
+
+            }
+            System.out.println("saindo return");
+            return null;
+        }
     }
 
 }

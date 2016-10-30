@@ -5,6 +5,7 @@
  */
 package br.com.aqbs.view;
 
+import br.com.aqbs.controller.GerenciarRoleta;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,18 +26,24 @@ public class NumeroController extends StackPane {
     @FXML
     private Text valor;
 
-   public NumeroController(String valor) {
+    private GerenciarRoleta gr;
+
+    public NumeroController(String valor) {
+        gr = new GerenciarRoleta();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Numero.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
-       
         try {
-            fxmlLoader.load();  
-                    this.valor.setText(valor);
+            fxmlLoader.load();
+            this.valor.setText(valor);
         } catch (IOException exception) {
-            throw new RuntimeException(exception);
+            System.out.println("Erro para gerar Número");
         }
+//        if (gr.pegarCor(Integer.valueOf(valor)).equals("Preto"))
+//            fundo.setFill(Color.BLACK);
+//        else
+//            fundo.setFill(Color.RED);
     }
 
     public Rectangle getFundo() {
@@ -54,6 +61,5 @@ public class NumeroController extends StackPane {
     public void setValor(String valor) {
         this.valor.setText(valor);
     }
-  
-    
+
 }

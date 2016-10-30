@@ -4,6 +4,7 @@ package br.com.aqbs.controller;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.layout.HBox;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
@@ -15,6 +16,17 @@ public class Capture extends Thread {
 
     ITesseract instance = new Tesseract();
     List<String> numeros = new ArrayList<>();
+    private GerenciarRoleta gr = new GerenciarRoleta();
+    private boolean flag = false;
+    private String valor;
+
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(String valor) {
+        this.valor = valor;
+    }
 
     public Capture() {
 
@@ -26,54 +38,50 @@ public class Capture extends Thread {
     }
 
     public String identificarNumero() {
-        // File imageFile = new File("/Users/andreqbs/NetBeansProjects/meuprimeirogit/foto.jpg");
-        File imageFile = new File("D:\\Documentos\\NetBeansProjects\\RoulleteBet\\foto.png");
-        //  instance.setDatapath("/Users/andreqbs/Downloads/Tess4J/");
-        instance.setDatapath("D:\\Downloads\\Tess4J\\");
+        File imageFile = new File("/Users/andreqbs/NetBeansProjects/meuprimeirogit/foto.png");
+        //File imageFile = new File("D:\\Documentos\\NetBeansProjects\\RoulleteBet\\foto.png");
+        instance.setDatapath("/Users/andreqbs/Downloads/Tess4J/");
+        //instance.setDatapath("D:\\Downloads\\Tess4J\\");
         instance.setLanguage("eng");
-
+        String result = null;
         try {
-            String result = instance.doOCR(imageFile);
-            System.out.println(result);
-            return result;
+            result = instance.doOCR(imageFile);
+           // System.out.println("O tamanho do vetor é " + result.length());
+            if(result.length() <= 3) {
+             //   System.out.println("O numero com 1 digito é : " + result.substring(0, 2));
+             valor = result.substring(0, 1);
+                return result.substring(0, 1); }
+            else {
+             valor = result.substring(0, 2);
+                return result.substring(0, 2);
+            }
+            
         } catch (TesseractException e) {
             System.err.println(e.getMessage());
         }
-
-        return null;
-    }
-
-    public void asa() {
-    }
-
-    public String traduzirNumero(String valor) {
-
-        String resposta = null;
-        
-        if (numeros.contains(valor)) {
-            resposta = valor;
-        } else if (valor.equals("Ts")) {
-            resposta = "25";
-        } else if (valor.equals("E")) {
-            resposta = "36";
-        } else if (valor.equals("w")) {
-            resposta = "19";
-        }
-        return resposta;
+        return "-1";
     }
 
     class ThreadReadData3 extends Thread {
+
+        private int contador = 0;
 
         @Override
         public void run() {
             while (true) {
                 if (CaptureTeste.windowReader) {
                     try {
-                        System.out.println(traduzirNumero(identificarNumero()));
-                        this.sleep(108000);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        //contador++;
+                        //if(contador < 5) {
+                        if (flag) {
+                            gr.inserirNumero(identificarNumero());
+                        }
+                        flag = true;
+                        //}
 
+                        ThreadReadData3.sleep(72000);
+                    } catch (InterruptedException e) {
+                        System.out.println(e.getMessage());
                     }
                 }
             }

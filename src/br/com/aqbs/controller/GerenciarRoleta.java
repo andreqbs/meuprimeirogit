@@ -11,6 +11,8 @@ import br.com.aqbs.model.Numero;
 import br.com.aqbs.model.Som;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,15 @@ public class GerenciarRoleta {
         LocalDate theDate = timePoint.toLocalDate();
 
         Numero n = new Numero(valor, pegarCor(v), theDate.toString(), turno, dealer);
+        numeroDAO.create(n);
+    }
+    
+    public void inserirNumero(String valor) {
+        int v = Integer.parseInt(valor);
+        LocalDateTime timePoint = LocalDateTime.now();
+        LocalDate theDate = timePoint.toLocalDate();
+
+        Numero n = new Numero(valor, pegarCor(v), timePoint.format(DateTimeFormatter.ISO_LOCAL_DATE), timePoint.format(DateTimeFormatter.ISO_LOCAL_TIME), "Simonia");
         numeroDAO.create(n);
     }
     
@@ -232,7 +243,7 @@ public class GerenciarRoleta {
 
     }
 
-    private String pegarCor(int valor) {
+    public String pegarCor(int valor) {
 
         switch (valor) {
             case 0:

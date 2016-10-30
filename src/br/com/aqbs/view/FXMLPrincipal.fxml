@@ -156,4 +156,24 @@
          </children>
       </VBox>
    </left>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <TitledPane animated="false" prefHeight="200.0" prefWidth="185.0" text="Números">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="185.0">
+                     <children>
+                        <HBox fx:id="hbxNumeros1" prefHeight="30.0" prefWidth="185.0" />
+                        <HBox fx:id="hbxNumeros2" layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="185.0" />
+                        <HBox fx:id="hbxNumeros3" layoutX="20.0" layoutY="50.0" prefHeight="30.0" prefWidth="185.0" />
+                        <HBox fx:id="hbxNumeros4" layoutX="20.0" layoutY="80.0" prefHeight="30.0" prefWidth="185.0" />
+                        <HBox fx:id="hbxNumeros5" layoutX="20.0" layoutY="110.0" prefHeight="30.0" prefWidth="185.0" />
+                        <HBox fx:id="hbxNumeros6" layoutX="20.0" layoutY="140.0" prefHeight="30.0" prefWidth="185.0" />
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+         </children>
+      </VBox>
+   </right>
 </BorderPane>

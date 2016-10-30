@@ -1,4 +1,4 @@
-package br.com.aqbs.view;
+package br.com.aqbs.controller;
 
 
 import java.awt.AWTException;

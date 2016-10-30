@@ -78,12 +78,12 @@ public class CaptureTeste {
 
         @Override
         public void mouseMoved(MouseEvent e) {
-            
+
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
         }
     }
 
@@ -103,12 +103,12 @@ public class CaptureTeste {
                             BufferedImage screenshot = robot.createScreenCapture(new Rectangle(windowReference.getLocationOnScreen().x, windowReference.getLocationOnScreen().y, windowReference.getSize().width, windowReference.getSize().height));
                             ImageIO.write(screenshot, "png", new File("foto.png"));
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            System.out.println(e.getMessage());
 
                         }
 
                     }
-                    this.sleep(100000);
+                    this.sleep(63000);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -135,9 +135,7 @@ public class CaptureTeste {
                 System.err.println(ex);
             }
         }
-        
 
     }
- 
-  
+
 }
