@@ -5,7 +5,6 @@
  */
 package br.com.aqbs.view;
 
-import br.com.aqbs.controller.Capture;
 import br.com.aqbs.controller.CaptureTeste;
 import br.com.aqbs.controller.GerenciarDealer;
 import br.com.aqbs.controller.GerenciarRoleta;
