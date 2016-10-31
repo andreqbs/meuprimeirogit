@@ -42,9 +42,7 @@ public class CaptureTeste {
     ITesseract instance = new Tesseract();
     List<String> numeros = new ArrayList<>();
     private GerenciarRoleta gr = new GerenciarRoleta();
-    private String anterior = "-1";
     private String valor = "-1";
-    private int contador = 0;
 
     public String getValor() {
         return valor;
@@ -73,17 +71,15 @@ public class CaptureTeste {
     }
 
     public String identificarNumero() {
-        File imageFile = new File("/Users/andreqbs/NetBeansProjects/meuprimeirogit/foto.png");
-        //File imageFile = new File("D:\\Documentos\\NetBeansProjects\\RoulleteBet\\foto.png");
-        instance.setDatapath("/Users/andreqbs/Downloads/Tess4J/");
-        //instance.setDatapath("D:\\Downloads\\Tess4J\\");
+        //File imageFile = new File("/Users/andreqbs/NetBeansProjects/meuprimeirogit/foto.png");
+        File imageFile = new File("D:\\Documentos\\NetBeansProjects\\meuprimeirogit\\foto.png");
+        //instance.setDatapath("/Users/andreqbs/Downloads/Tess4J/");
+        instance.setDatapath("D:\\Downloads\\Tess4J\\");
         instance.setLanguage("eng");
         String result = null;
         try {
             result = instance.doOCR(imageFile);
-            //  System.out.println("O tamanho do vetor é " + result.length());
             if (result.length() >= 1 && result.length() <= 3) {
-                // System.out.println("O numero com 1 digito é : " + result.substring(0, 1));
                 valor = result.substring(0, 1);
                 if (valor.equals("0") || valor.equals("1") || valor.equals("2") || valor.equals("2") || valor.equals("3")
                         || valor.equals("4") || valor.equals("5") || valor.equals("6") || valor.equals("7")
@@ -96,7 +92,6 @@ public class CaptureTeste {
                 }
             } else if (result.length() >= 4 && result.length() < 6) {
                 valor = result.substring(0, 2);
-                //    System.out.println("O numero com 1 digito é : " + result.substring(0, 2));
                 if (valor.equals("10") || valor.equals("11") || valor.equals("12") || valor.equals("13")
                         || valor.equals("14") || valor.equals("15") || valor.equals("16") || valor.equals("17")
                         || valor.equals("18") || valor.equals("19") || valor.equals("20") || valor.equals("21")
@@ -104,7 +99,6 @@ public class CaptureTeste {
                         || valor.equals("26") || valor.equals("27") || valor.equals("28") || valor.equals("29")
                         || valor.equals("30") || valor.equals("31") || valor.equals("32") || valor.equals("33")
                         || valor.equals("34") || valor.equals("35") || valor.equals("36")) {
-                    //   System.out.println("o valor registrado foi" + valor);
                     return result.substring(0, 2);
                 } else {
                     valor = "-1";
@@ -165,15 +159,12 @@ public class CaptureTeste {
                             ImageIO.write(screenshot, "png", new File("foto.png"));
 
                             valor = identificarNumero();
-                            if (valor.equals("-1") || valor.equals(anterior)) {
+                            System.out.println(valor);
+                            if (valor.equals("-1")) {
                                 valor = "-1";
-                                //contador++;
-//                                if (contador > 1)
-//                                    gr.inserirNumero(valor); 
                             } else {
-                                gr.inserirNumero(valor);
-                                anterior = valor;
-                                ThreadReadData3.sleep(35000);
+                               // gr.inserirNumero(valor);
+                                ThreadReadData3.sleep(52000);
                             }
 
                         } catch (IOException e) {

@@ -101,7 +101,7 @@ public class FXMLPrincipalController implements Initializable {
             load();
             loadNumeros();
             //          loadDealer();
-            a = new CaptureTeste(27, 29);
+            a = new CaptureTeste(50, 50);
         } catch (IOException ex) {
             System.out.println("Erro ao iniciar servidor");
         }
@@ -266,6 +266,8 @@ public class FXMLPrincipalController implements Initializable {
                                     } else if (cor.equals("Verde")) {
                                         na.setFundo(Color.GREEN);
                                     }
+                                    if(i == 3)
+                                        System.out.println("Ok L1");
 
                                 } else if (i > 3 && i < 8) {
                                     NumeroController na = (NumeroController) hbxNumeros2.getChildren().get(i - contador);
@@ -279,13 +281,17 @@ public class FXMLPrincipalController implements Initializable {
                                     } else if (cor.equals("Verde")) {
                                         na.setFundo(Color.GREEN);
                                     }
+                                     if(i == 7)
+                                        System.out.println("Ok L1");
 
                                 } else if (i > 7 && i < 12) {
                                     contador = 8;
                                     System.out.println(i + " " + contador);
                                     NumeroController na = (NumeroController) hbxNumeros3.getChildren().get(i - contador);
                                     na.setValor(numerosa.get(i));
+                                     System.out.println(numerosa.get(i));
                                     cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
+                                    System.out.println(cor);
 
                                     if (cor.equals("Preto")) {
                                         na.setFundo(Color.BLACK);
@@ -294,6 +300,8 @@ public class FXMLPrincipalController implements Initializable {
                                     } else if (cor.equals("Verde")) {
                                         na.setFundo(Color.GREEN);
                                     }
+                                     if(i == 11)
+                                        System.out.println("Ok L3");
 
                                 } else if (i > 11 && i < 16) {
                                     contador = 12;
@@ -345,13 +353,12 @@ public class FXMLPrincipalController implements Initializable {
                                 System.out.println("Erro na geracao da cor");
                             }
                             a.setValor("-1");
-                            Thread.sleep(1500);
                         }
-
+                        Thread.sleep(55000);
                     }
                     System.out.println("quase indo dormir");
-                    //hbxNumeros1.getc
-                    Thread.sleep(2000);
+                    Thread.sleep(3000);
+                    
 
                 } catch (InterruptedException interrupted) {
 
