@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.aqbs.view.FXMLGraficoConfiguracaoController">
+   <children>
+      <TitledPane animated="false" text="Tipo de Apostas">
+         <content>
+            <VBox prefHeight="100.0" prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="20.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Dúzia 1-2">
+                           <padding>
+                              <Insets right="38.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Dúzia 1-3">
+                           <padding>
+                              <Insets right="36.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Dúzia 2-3">
+                           <padding>
+                              <Insets right="30.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="1 a 18">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="19 a 36" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="20.0" layoutY="20.0" prefHeight="20.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Coluna 1-2">
+                           <padding>
+                              <Insets right="21.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Coluna 1-3">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Coluna 2-3">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Par ">
+                           <padding>
+                              <Insets right="24.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Ímpar" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="20.0" layoutY="50.0" prefHeight="20.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Vermelho">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Preto">
+                           <padding>
+                              <Insets right="37.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Metade Roleta">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="10.0" layoutY="10.0" text="Sequência Gráfico">
+         <content>
+            <VBox prefHeight="100.0" prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="20.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Max Preto">
+                           <padding>
+                              <Insets right="16.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Média Preto">
+                           <padding>
+                              <Insets right="17.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Max Vermelho">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Média Vermelho">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox layoutX="405.0" layoutY="10.0" mnemonicParsing="false" text="Alternado">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="20.0" layoutY="20.0" prefHeight="20.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Max Par">
+                           <padding>
+                              <Insets right="29.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Média Par">
+                           <padding>
+                              <Insets right="29.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Max Ímpar">
+                           <padding>
+                              <Insets right="39.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Média Ímpar">
+                           <padding>
+                              <Insets right="39.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Alternado" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="20.0" layoutY="50.0" prefHeight="20.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Max 1 a 18">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Média 1 a 18">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Max 1 a 19">
+                           <padding>
+                              <Insets right="39.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox layoutX="244.0" layoutY="10.0" mnemonicParsing="false" text="Média 1 a 19">
+                           <padding>
+                              <Insets right="39.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox layoutX="347.0" layoutY="10.0" mnemonicParsing="false" text="Alternado">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="20.0" layoutY="80.0" prefHeight="20.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Max Dúzia 1-2">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Média Dúzia 1-2">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox layoutX="347.0" layoutY="10.0" mnemonicParsing="false" text="Alternado">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="20.0" layoutY="104.0" prefHeight="20.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Max Dúzia 1-3">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Média Dúzia 1-3">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox layoutX="347.0" layoutY="10.0" mnemonicParsing="false" text="Alternado">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="20.0" layoutY="122.0" prefHeight="20.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Max Dúzia 2-3">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Média Dúzia 2-3">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox layoutX="347.0" layoutY="10.0" mnemonicParsing="false" text="Alternado">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="20.0" layoutY="140.0" prefHeight="20.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Max Coluna 1-2">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Média Coluna 1-2">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox layoutX="347.0" layoutY="10.0" mnemonicParsing="false" text="Alternado">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="20.0" layoutY="188.0" prefHeight="20.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Max Coluna 1-3">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Média Coluna 1-3">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox layoutX="347.0" layoutY="10.0" mnemonicParsing="false" text="Alternado">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="20.0" layoutY="206.0" prefHeight="20.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Max Coluna 2-3">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Média Coluna 2-3">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox layoutX="347.0" layoutY="10.0" mnemonicParsing="false" text="Alternado">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="20.0" layoutY="76.0" prefHeight="20.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Max Metade Roleta">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Média Metade Roleta">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                        <CheckBox layoutX="347.0" layoutY="10.0" mnemonicParsing="false" text="Alternado">
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" text="Gerar">
+               <HBox.margin>
+                  <Insets right="30.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Limpar">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

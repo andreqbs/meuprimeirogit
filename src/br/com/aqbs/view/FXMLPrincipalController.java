@@ -102,7 +102,7 @@ public class FXMLPrincipalController implements Initializable {
             load();
             loadNumeros();
             //          loadDealer();
-            a = new CaptureTeste(30, 28);
+            a = new CaptureTeste(27, 29);
         } catch (IOException ex) {
             System.out.println("Erro ao iniciar servidor");
         }
@@ -250,10 +250,10 @@ public class FXMLPrincipalController implements Initializable {
             while (true) {
                 try {
                     valor = a.getValor();
-                    System.out.println(valor);
                     if (!valor.equals("-1")) {
-                        System.out.println("Inserindo");
                         numerosa.add(0, valor);
+                        System.out.println("Inserindo" + valor + "Tamanho atual" + numerosa.size());
+                        Thread.sleep(1000);
                         for (int i = 0; i < numerosa.size(); i++) {
                             try {
                                 if (i < 4) {
@@ -283,6 +283,7 @@ public class FXMLPrincipalController implements Initializable {
 
                                 } else if (i > 7 && i < 12) {
                                     contador = 8;
+                                    System.out.println(i + " " + contador);
                                     NumeroController na = (NumeroController) hbxNumeros3.getChildren().get(i - contador);
                                     na.setValor(numerosa.get(i));
                                     cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
@@ -341,16 +342,17 @@ public class FXMLPrincipalController implements Initializable {
                                         contador = 4;
                                     }
                                 }
-                            } catch (Exception e) {
+                            } catch (NumberFormatException e) {
                                 System.out.println("Erro na geracao da cor");
                             }
-                            Thread.sleep(15000);
+                            a.setValor("-1");
+                            Thread.sleep(1500);
                         }
 
                     }
                     System.out.println("quase indo dormir");
                     //hbxNumeros1.getc
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
 
                 } catch (InterruptedException interrupted) {
 

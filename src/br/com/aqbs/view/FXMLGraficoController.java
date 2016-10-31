@@ -23,9 +23,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-
-
-
 /**
  * FXML Controller class
  *
@@ -45,7 +42,7 @@ public class FXMLGraficoController extends VBox {
     final static String aposta10 = "Ímpar";
     final static String aposta11 = "Vermelho";
     final static String aposta12 = "Preto";
-     final static String aposta13 = "Quebrando";
+    final static String aposta13 = "Quebrando";
 
     @FXML
     private BarChart<String, Number> barChart;
@@ -53,9 +50,9 @@ public class FXMLGraficoController extends VBox {
     private NumberAxis yAxis;
     @FXML
     private CategoryAxis xAxis;
-    
+
     private GerenciarRoleta gr = new GerenciarRoleta();
-    
+
     private XYChart.Series series1 = new XYChart.Series();
     @FXML
     private ComboBox<?> cmbDealer;
@@ -63,6 +60,19 @@ public class FXMLGraficoController extends VBox {
     private Label cmbTipo;
 
     public FXMLGraficoController() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLGrafico.fxml"));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+        gerarGrafico();
+    }
+
+    public FXMLGraficoController(List<String> l) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLGrafico.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -94,13 +104,24 @@ public class FXMLGraficoController extends VBox {
         series1.getData().add(new XYChart.Data(aposta13, 0));
 
         barChart.getData().addAll(series1);
-        
-        
+
     }
-    
+
+    public void gerarGrafico(List<String> l) {
+
+        xAxis.setLabel("Apostas");
+        yAxis.setLabel("% Acerto");
+        for (int i = 0; i < l.size(); i++) {
+            series1.getData().add(new XYChart.Data(l.get(i), 0));
+        }
+
+        barChart.getData().addAll(series1);
+
+    }
+
     public void atualizarGrafico() {
         List<Integer> numeros = gr.totalRodadas();
-         Timeline tl = new Timeline();
+        Timeline tl = new Timeline();
         tl.stop();
         tl.getKeyFrames().add(
                 new KeyFrame(Duration.millis(1000),
@@ -117,13 +138,13 @@ public class FXMLGraficoController extends VBox {
                     }
                 }
                 ));
-      //  tl.setCycleCount(Animation.INDEFINITE);
+        //  tl.setCycleCount(Animation.INDEFINITE);
         tl.setAutoReverse(false);
         tl.play();
     }
-    
+
     public void atualizarGrafico(String valor) {
-        
+
         List<Integer> numeros = gr.calculaEstatisticas(Integer.valueOf(valor));
         Timeline tl = new Timeline();
         tl.stop();
@@ -142,16 +163,15 @@ public class FXMLGraficoController extends VBox {
                     }
                 }
                 ));
-      //  tl.setCycleCount(Animation.INDEFINITE);
+        //  tl.setCycleCount(Animation.INDEFINITE);
         tl.setAutoReverse(false);
         tl.play();
-        
+
     }
-    
+
     public void limparGrafico() {
         gr.limparApostas();
-       
-        
+
     }
 
 }

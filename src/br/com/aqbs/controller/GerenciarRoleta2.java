@@ -25,10 +25,7 @@ import javax.imageio.ImageIO;
  */
 public class GerenciarRoleta2 {
 
-    GerenciarRoleta2(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+  
     private void getScreen() throws IOException {
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();

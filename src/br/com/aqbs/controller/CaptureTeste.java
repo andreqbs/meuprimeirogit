@@ -131,7 +131,7 @@ public class CaptureTeste {
 
             setLayout(new GridBagLayout());
             setSize(largura, altura);
-            setLocation(200, 200);
+            setLocation(535, 435);
             ThreadReadData3 t = new ThreadReadData3();
             t.windowReference = this;
             t.start();
@@ -173,7 +173,7 @@ public class CaptureTeste {
                             if (valor.equals("-1")) {
                                 valor = "-1";
                             } else {
-                                gr.inserirNumero(valor);
+                                gr.inserirNumero(valor);                              
                                 ThreadReadData3.sleep(35000);
                             }
 
@@ -183,7 +183,7 @@ public class CaptureTeste {
                         }
 
                     }
-                    ThreadReadData3.sleep(2000);
+                    ThreadReadData3.sleep(1500);
                 }
             } catch (AWTException | InterruptedException e) {
                 System.out.println("Erro na captura da imagem");
