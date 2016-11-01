@@ -91,6 +91,7 @@ public class FXMLPrincipalController implements Initializable {
     private GerenciarRoleta gr = new GerenciarRoleta();
     private GerenciarDealer gd = new GerenciarDealer();
     private CaptureTeste a;
+    private FXMLCapturaConfiguracaoController ccc;
 
     // private CapturaController cc;
     /**
@@ -101,16 +102,11 @@ public class FXMLPrincipalController implements Initializable {
         try {
             load();
             loadNumeros();
-            //          loadDealer();
+            loadDealer();
 
         } catch (IOException ex) {
             System.out.println("Erro ao iniciar servidor");
         }
-
-        teste e = new teste();
-        Thread x = new Thread(e);
-        x.start();
-
     }
 
     private void load() throws IOException {
@@ -140,8 +136,11 @@ public class FXMLPrincipalController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
             FXMLCapturaConfiguracaoController tt = fxmlLoader.<FXMLCapturaConfiguracaoController>getController();
+            teste e = new teste();
+            Thread x = new Thread(e);
+            tt.initData(x);
             a = tt.getCaptureTeste();
-             System.out.println(a);
+            System.out.println(a);
         } catch (IOException e) {
             System.out.println("Erro ao gerar Frame de Captura");
         }
@@ -237,6 +236,10 @@ public class FXMLPrincipalController implements Initializable {
     private void loadApostas(ActionEvent event) {
     }
 
+    private void teste2() {
+
+    }
+
     private class teste extends Task<Void> {
 
         int contador = 4;
@@ -248,125 +251,121 @@ public class FXMLPrincipalController implements Initializable {
         @Override
         protected Void call() throws Exception {
             while (true) {
-                System.out.println(a);
-                if (a != null) {
-                    try {
-                        System.out.println("AQUI2");
-                        valor = a.getValor();
-                        if (!valor.equals("-1")) {
-                            numerosa.add(0, valor);
-                            System.out.println("Inserindo" + valor + "Tamanho atual" + numerosa.size());
-                            Thread.sleep(1000);
-                            for (int i = 0; i < numerosa.size(); i++) {
-                                try {
-                                    if (i < 4) {
-                                        NumeroController na = (NumeroController) hbxNumeros1.getChildren().get(i);
-                                        na.setValor(numerosa.get(i));
-                                        cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
-                                        if (cor.equals("Preto")) {
-                                            na.setFundo(Color.BLACK);
-                                        } else if (cor.equals("Vermelho")) {
-                                            na.setFundo(Color.RED);
-                                        } else if (cor.equals("Verde")) {
-                                            na.setFundo(Color.GREEN);
-                                        }
-                                    } else if (i > 3 && i < 8) {
-                                        contador = 4;
-                                        NumeroController na = (NumeroController) hbxNumeros2.getChildren().get(i - contador);
-                                        na.setValor(numerosa.get(i));
-                                        cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
-
-                                        if (cor.equals("Preto")) {
-                                            na.setFundo(Color.BLACK);
-                                        } else if (cor.equals("Vermelho")) {
-                                            na.setFundo(Color.RED);
-                                        } else if (cor.equals("Verde")) {
-                                            na.setFundo(Color.GREEN);
-                                        }
-
-                                    } else if (i > 7 && i < 12) {
-                                        contador = 8;
-                                        System.out.println(i + " " + contador);
-                                        NumeroController na = (NumeroController) hbxNumeros3.getChildren().get(i - contador);
-                                        na.setValor(numerosa.get(i));
-                                        System.out.println(numerosa.get(i));
-                                        cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
-                                        System.out.println(cor);
-
-                                        if (cor.equals("Preto")) {
-                                            na.setFundo(Color.BLACK);
-                                        } else if (cor.equals("Vermelho")) {
-                                            na.setFundo(Color.RED);
-                                        } else if (cor.equals("Verde")) {
-                                            na.setFundo(Color.GREEN);
-                                        }
-                                        if (i == 11) {
-                                            System.out.println("Ok L3");
-                                        }
-
-                                    } else if (i > 11 && i < 16) {
-                                        contador = 12;
-                                        NumeroController na = (NumeroController) hbxNumeros4.getChildren().get(i - contador);
-                                        na.setValor(numerosa.get(i));
-                                        cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
-
-                                        if (cor.equals("Preto")) {
-                                            na.setFundo(Color.BLACK);
-                                        } else if (cor.equals("Vermelho")) {
-                                            na.setFundo(Color.RED);
-                                        } else if (cor.equals("Verde")) {
-                                            na.setFundo(Color.GREEN);
-                                        }
-
-                                    } else if (i > 15 && i < 20) {
-                                        contador = 16;
-                                        NumeroController na = (NumeroController) hbxNumeros5.getChildren().get(i - contador);
-                                        na.setValor(numerosa.get(i));
-                                        cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
-
-                                        if (cor.equals("Preto")) {
-                                            na.setFundo(Color.BLACK);
-                                        } else if (cor.equals("Vermelho")) {
-                                            na.setFundo(Color.RED);
-                                        } else if (cor.equals("Verde")) {
-                                            na.setFundo(Color.GREEN);
-                                        }
-
-                                    } else if (i > 19 && i < 24) {
-                                        contador = 20;
-                                        NumeroController na = (NumeroController) hbxNumeros6.getChildren().get(i - contador);
-                                        na.setValor(numerosa.get(i));
-                                        cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
-                                        if (cor.equals("Preto")) {
-                                            na.setFundo(Color.BLACK);
-                                        } else if (cor.equals("Vermelho")) {
-                                            na.setFundo(Color.RED);
-                                        } else if (cor.equals("Verde")) {
-                                            na.setFundo(Color.GREEN);
-                                        }
-
-                                        if (numerosa.size() > 23) {
-                                            System.out.println("Entrei aqui" + numerosa.size());
-                                            numerosa.remove(24);
-                                            contador = 4;
-                                        }
+                try {
+                    System.out.println("A111");
+                    valor = a.getValor();
+                    if (!valor.equals("-1")) {
+                        numerosa.add(0, valor);
+                        System.out.println("Inserindo" + valor + "Tamanho atual" + numerosa.size());
+                        Thread.sleep(1000);
+                        for (int i = 0; i < numerosa.size(); i++) {
+                            try {
+                                if (i < 4) {
+                                    NumeroController na = (NumeroController) hbxNumeros1.getChildren().get(i);
+                                    na.setValor(numerosa.get(i));
+                                    cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
+                                    if (cor.equals("Preto")) {
+                                        na.setFundo(Color.BLACK);
+                                    } else if (cor.equals("Vermelho")) {
+                                        na.setFundo(Color.RED);
+                                    } else if (cor.equals("Verde")) {
+                                        na.setFundo(Color.GREEN);
                                     }
-                                } catch (NumberFormatException e) {
-                                    System.out.println("Erro na geracao da cor");
+                                } else if (i > 3 && i < 8) {
+                                    contador = 4;
+                                    NumeroController na = (NumeroController) hbxNumeros2.getChildren().get(i - contador);
+                                    na.setValor(numerosa.get(i));
+                                    cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
+
+                                    if (cor.equals("Preto")) {
+                                        na.setFundo(Color.BLACK);
+                                    } else if (cor.equals("Vermelho")) {
+                                        na.setFundo(Color.RED);
+                                    } else if (cor.equals("Verde")) {
+                                        na.setFundo(Color.GREEN);
+                                    }
+
+                                } else if (i > 7 && i < 12) {
+                                    contador = 8;
+                                    System.out.println(i + " " + contador);
+                                    NumeroController na = (NumeroController) hbxNumeros3.getChildren().get(i - contador);
+                                    na.setValor(numerosa.get(i));
+                                    System.out.println(numerosa.get(i));
+                                    cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
+                                    System.out.println(cor);
+
+                                    if (cor.equals("Preto")) {
+                                        na.setFundo(Color.BLACK);
+                                    } else if (cor.equals("Vermelho")) {
+                                        na.setFundo(Color.RED);
+                                    } else if (cor.equals("Verde")) {
+                                        na.setFundo(Color.GREEN);
+                                    }
+                                    if (i == 11) {
+                                        System.out.println("Ok L3");
+                                    }
+
+                                } else if (i > 11 && i < 16) {
+                                    contador = 12;
+                                    NumeroController na = (NumeroController) hbxNumeros4.getChildren().get(i - contador);
+                                    na.setValor(numerosa.get(i));
+                                    cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
+
+                                    if (cor.equals("Preto")) {
+                                        na.setFundo(Color.BLACK);
+                                    } else if (cor.equals("Vermelho")) {
+                                        na.setFundo(Color.RED);
+                                    } else if (cor.equals("Verde")) {
+                                        na.setFundo(Color.GREEN);
+                                    }
+
+                                } else if (i > 15 && i < 20) {
+                                    contador = 16;
+                                    NumeroController na = (NumeroController) hbxNumeros5.getChildren().get(i - contador);
+                                    na.setValor(numerosa.get(i));
+                                    cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
+
+                                    if (cor.equals("Preto")) {
+                                        na.setFundo(Color.BLACK);
+                                    } else if (cor.equals("Vermelho")) {
+                                        na.setFundo(Color.RED);
+                                    } else if (cor.equals("Verde")) {
+                                        na.setFundo(Color.GREEN);
+                                    }
+
+                                } else if (i > 19 && i < 24) {
+                                    contador = 20;
+                                    NumeroController na = (NumeroController) hbxNumeros6.getChildren().get(i - contador);
+                                    na.setValor(numerosa.get(i));
+                                    cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
+                                    if (cor.equals("Preto")) {
+                                        na.setFundo(Color.BLACK);
+                                    } else if (cor.equals("Vermelho")) {
+                                        na.setFundo(Color.RED);
+                                    } else if (cor.equals("Verde")) {
+                                        na.setFundo(Color.GREEN);
+                                    }
+
+                                    if (numerosa.size() > 23) {
+                                        System.out.println("Entrei aqui" + numerosa.size());
+                                        numerosa.remove(24);
+                                        contador = 4;
+                                    }
                                 }
-                                a.setValor("-1");
+                            } catch (NumberFormatException e) {
+                                System.out.println("Erro na geracao da cor");
                             }
-                            Thread.sleep(55000);
+                            a.setValor("-1");
                         }
-                        Thread.sleep(3000);
-                        System.out.println("lendo valores");
-
-                    } catch (InterruptedException interrupted) {
-
-                        System.out.println("saindo break");
-                        break;
+                        Thread.sleep(55000);
                     }
+                    Thread.sleep(3000);
+                    System.out.println("lendo valores");
 
+                } catch (InterruptedException interrupted) {
+
+                    System.out.println("saindo break");
+                    break;
                 }
             }
             System.out.println("saindo return");

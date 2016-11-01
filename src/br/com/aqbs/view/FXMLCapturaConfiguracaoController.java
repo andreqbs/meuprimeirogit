@@ -23,19 +23,26 @@ public class FXMLCapturaConfiguracaoController implements Initializable {
      * Initializes the controller class.
      */
     private CaptureTeste ct;
+    private Thread x;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         ct = new CaptureTeste(40, 40);
+        ct = new CaptureTeste();
     }
 
     @FXML
     private void janelaCaptura(MouseEvent event) {
-       
+        ct.mostrarJanela(40, 40);
+        x.start();
+
     }
 
     public CaptureTeste getCaptureTeste() {
         return ct;
     }
-    
+
+    void initData(Thread x) {
+        this.x = x;
+    }
+
 }

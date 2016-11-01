@@ -51,8 +51,12 @@ public class CaptureTeste {
     public void setValor(String valor) {
         this.valor = valor;
     }
+    
+    public CaptureTeste() {
+        
+    }
 
-    public CaptureTeste(int altura, int largura) {
+    public void mostrarJanela(int altura, int largura) {
 
         this.altura = altura;
         this.largura = largura;
