@@ -159,7 +159,7 @@ public class CaptureTeste {
                             ImageIO.write(screenshot, "png", new File("foto.png"));
 
                             valor = identificarNumero();
-                            System.out.println(valor);
+                           // System.out.println(valor);
                             if (valor.equals("-1")) {
                                 valor = "-1";
                             } else {

@@ -5,6 +5,7 @@
  */
 package br.com.aqbs.view;
 
+import br.com.aqbs.controller.CaptureTeste;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -21,13 +22,20 @@ public class FXMLCapturaConfiguracaoController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    private CaptureTeste ct;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+         ct = new CaptureTeste(40, 40);
+    }
 
     @FXML
     private void janelaCaptura(MouseEvent event) {
+       
+    }
+
+    public CaptureTeste getCaptureTeste() {
+        return ct;
     }
     
 }
