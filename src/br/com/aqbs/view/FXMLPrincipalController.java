@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -101,7 +102,7 @@ public class FXMLPrincipalController implements Initializable {
             load();
             loadNumeros();
             //          loadDealer();
-            a = new CaptureTeste(50, 50);
+            a = new CaptureTeste(40, 40);
         } catch (IOException ex) {
             System.out.println("Erro ao iniciar servidor");
         }
@@ -206,16 +207,22 @@ public class FXMLPrincipalController implements Initializable {
             NumeroController n = new NumeroController("X");
             if (i < 4) {
                 hbxNumeros1.getChildren().add(n);
+                HBox.setMargin(n, new Insets(0, 5, 5, 5));
             } else if (i > 3 && i < 8) {
                 hbxNumeros2.getChildren().add(n);
+                  HBox.setMargin(n, new Insets(0, 5, 5, 5));
             } else if (i > 7 && i < 12) {
                 hbxNumeros3.getChildren().add(n);
+                 HBox.setMargin(n, new Insets(0, 5, 5, 5));
             } else if (i > 11 && i < 16) {
                 hbxNumeros4.getChildren().add(n);
+                 HBox.setMargin(n, new Insets(0, 5, 5, 5));
             } else if (i > 15 && i < 20) {
                 hbxNumeros5.getChildren().add(n);
+                 HBox.setMargin(n, new Insets(0, 5, 5, 5));
             } else if (i > 19 && i < 24) {
                 hbxNumeros6.getChildren().add(n);
+                HBox.setMargin(n, new Insets(0, 5, 0, 5));
             }
         }
     }
@@ -265,11 +272,9 @@ public class FXMLPrincipalController implements Initializable {
                                         na.setFundo(Color.RED);
                                     } else if (cor.equals("Verde")) {
                                         na.setFundo(Color.GREEN);
-                                    }
-                                    if(i == 3)
-                                        System.out.println("Ok L1");
-
+                                    }                                    
                                 } else if (i > 3 && i < 8) {
+                                    contador = 4;
                                     NumeroController na = (NumeroController) hbxNumeros2.getChildren().get(i - contador);
                                     na.setValor(numerosa.get(i));
                                     cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
@@ -280,9 +285,7 @@ public class FXMLPrincipalController implements Initializable {
                                         na.setFundo(Color.RED);
                                     } else if (cor.equals("Verde")) {
                                         na.setFundo(Color.GREEN);
-                                    }
-                                     if(i == 7)
-                                        System.out.println("Ok L1");
+                                    }                               
 
                                 } else if (i > 7 && i < 12) {
                                     contador = 8;
@@ -311,7 +314,7 @@ public class FXMLPrincipalController implements Initializable {
 
                                     if (cor.equals("Preto")) {
                                         na.setFundo(Color.BLACK);
-                                    } else if (cor.equals("Vermelhor")) {
+                                    } else if (cor.equals("Vermelho")) {
                                         na.setFundo(Color.RED);
                                     } else if (cor.equals("Verde")) {
                                         na.setFundo(Color.GREEN);
@@ -345,6 +348,7 @@ public class FXMLPrincipalController implements Initializable {
                                     }
 
                                     if (numerosa.size() > 23) {
+                                        System.out.println("Entrei aqui" + numerosa.size() );
                                         numerosa.remove(24);
                                         contador = 4;
                                     }
@@ -356,17 +360,13 @@ public class FXMLPrincipalController implements Initializable {
                         }
                         Thread.sleep(55000);
                     }
-                    System.out.println("quase indo dormir");
-                    Thread.sleep(3000);
-                    
+                    Thread.sleep(3000);         
 
                 } catch (InterruptedException interrupted) {
 
                     System.out.println("saindo break");
                     break;
-
                 }
-
             }
             System.out.println("saindo return");
             return null;

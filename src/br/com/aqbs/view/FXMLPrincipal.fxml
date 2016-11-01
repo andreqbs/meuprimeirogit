@@ -77,7 +77,48 @@
                   </VBox>
                </content>
             </TitledPane>
-            <TitledPane prefHeight="200.0" prefWidth="184.0" text="Números">
+            <TitledPane layoutX="10.0" layoutY="10.0" prefHeight="249.0" prefWidth="180.0" text="Aposta">
+               <content>
+                  <VBox prefHeight="198.0" prefWidth="178.0">
+                     <children>
+                        <TextField fx:id="txfValor" prefHeight="27.0" prefWidth="100.0" />
+                        <Button fx:id="btnEnviarAposta" mnemonicParsing="false" onMouseClicked="#enviarAposta" prefHeight="27.0" prefWidth="180.0" text="Enviar">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <TextField fx:id="txfNovaAposta">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <ComboBox fx:id="cmbTipoAposta" onAction="#loadApostas" prefHeight="27.0" prefWidth="180.0" promptText="Tipo Aposta">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <HBox prefHeight="30.0" prefWidth="200.0">
+                           <children>
+                              <CheckBox fx:id="chkWin" mnemonicParsing="false" text="Win">
+                                 <HBox.margin>
+                                    <Insets left="8.0" top="5.0" />
+                                 </HBox.margin>
+                              </CheckBox>
+                              <CheckBox fx:id="chkLost" mnemonicParsing="false" text="Lost">
+                                 <HBox.margin>
+                                    <Insets left="15.0" top="5.0" />
+                                 </HBox.margin>
+                              </CheckBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+            <TitledPane prefHeight="200.0" prefWidth="184.0" text="Números (Manual)">
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
@@ -116,47 +157,6 @@
                               <CheckBox fx:id="chkNoite" mnemonicParsing="false" text="N">
                                  <HBox.margin>
                                     <Insets left="8.0" top="5.0" />
-                                 </HBox.margin>
-                              </CheckBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </content>
-            </TitledPane>
-            <TitledPane layoutX="10.0" layoutY="10.0" prefHeight="249.0" prefWidth="180.0" text="Aposta">
-               <content>
-                  <VBox prefHeight="198.0" prefWidth="178.0">
-                     <children>
-                        <TextField fx:id="txfValor" prefHeight="27.0" prefWidth="100.0" />
-                        <Button fx:id="btnEnviarAposta" mnemonicParsing="false" onMouseClicked="#enviarAposta" prefHeight="27.0" prefWidth="180.0" text="Enviar">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <TextField fx:id="txfNovaAposta">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <ComboBox fx:id="cmbTipoAposta" onAction="#loadApostas" prefHeight="27.0" prefWidth="180.0" promptText="Tipo Aposta">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </ComboBox>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
-                           <children>
-                              <CheckBox fx:id="chkWin" mnemonicParsing="false" text="Win">
-                                 <HBox.margin>
-                                    <Insets left="8.0" top="5.0" />
-                                 </HBox.margin>
-                              </CheckBox>
-                              <CheckBox fx:id="chkLost" mnemonicParsing="false" text="Lost">
-                                 <HBox.margin>
-                                    <Insets left="15.0" top="5.0" />
                                  </HBox.margin>
                               </CheckBox>
                            </children>
