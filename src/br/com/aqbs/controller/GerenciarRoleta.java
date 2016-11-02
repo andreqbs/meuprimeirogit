@@ -106,15 +106,15 @@ public class GerenciarRoleta {
         } else if (valor > 12 && valor < 25) {
             repeticoes = l.get(1);
             repeticoes++;
-            l.set(1, 0);
-            l.set(0, repeticoes);
+            l.set(0, 0);
+            l.set(1, repeticoes);
             l.set(2, 0);
         } else if (valor > 24 && valor < 37) {
             repeticoes = l.get(2);
             repeticoes++;
-            l.set(2, 0);
-            l.set(1, 0);
             l.set(0, repeticoes);
+            l.set(1, 0);
+            l.set(2, 0);
         }
 
         if (valor > 0 && valor < 19) { //Metade menor
@@ -228,9 +228,7 @@ public class GerenciarRoleta {
             l.set(12, repeticoes);
 
         } else {
-
             l.set(12, 0);
-
         }
 
         if (valor == -1) {

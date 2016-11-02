@@ -128,7 +128,7 @@ public class FXMLGraficoController extends VBox {
         Timeline tl = new Timeline();
         tl.stop();
         tl.getKeyFrames().add(
-                new KeyFrame(Duration.millis(1000),
+                new KeyFrame(Duration.millis(1500),
                         new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
