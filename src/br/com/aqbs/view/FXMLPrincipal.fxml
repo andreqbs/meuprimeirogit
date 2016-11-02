@@ -20,7 +20,7 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Visualizar">
               <items>
-                <MenuItem mnemonicParsing="false" text="Gráfico" />
+                <MenuItem mnemonicParsing="false" onAction="#configurarGrafico" text="Gráfico" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Captura">
@@ -77,6 +77,42 @@
                   </VBox>
                </content>
             </TitledPane>
+            <TitledPane prefHeight="200.0" prefWidth="184.0" text="Números (Manual)">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <TextField fx:id="txfNumero" prefHeight="27.0" prefWidth="70.0" />
+                        <Button fx:id="btnEnviar" mnemonicParsing="false" onMouseClicked="#enviarNumero" prefHeight="27.0" prefWidth="180.0" text="Enviar">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <ComboBox fx:id="cmbDealer" onAction="#loadDealers" prefHeight="27.0" prefWidth="180.0" promptText="Dealler">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <HBox prefHeight="30.0" prefWidth="200.0">
+                           <children>
+                              <CheckBox fx:id="chkAdd" mnemonicParsing="false" text="Add">
+                                 <HBox.margin>
+                                    <Insets left="8.0" top="5.0" />
+                                 </HBox.margin>
+                              </CheckBox>
+                              <CheckBox fx:id="chkRev" mnemonicParsing="false" text="Reavaliar">
+                                 <HBox.margin>
+                                    <Insets left="8.0" top="5.0" />
+                                 </HBox.margin>
+                              </CheckBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
             <TitledPane layoutX="10.0" layoutY="10.0" prefHeight="249.0" prefWidth="180.0" text="Aposta">
                <content>
                   <VBox prefHeight="198.0" prefWidth="178.0">
@@ -107,56 +143,6 @@
                               <CheckBox fx:id="chkLost" mnemonicParsing="false" text="Lost">
                                  <HBox.margin>
                                     <Insets left="15.0" top="5.0" />
-                                 </HBox.margin>
-                              </CheckBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </content>
-            </TitledPane>
-            <TitledPane prefHeight="200.0" prefWidth="184.0" text="Números (Manual)">
-               <content>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
-                           <children>
-                              <TextField fx:id="txfNumero" prefHeight="27.0" prefWidth="70.0">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <TextField fx:id="txfNumeroAnt" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="70.0" />
-                           </children>
-                        </HBox>
-                        <Button fx:id="btnEnviar" mnemonicParsing="false" onMouseClicked="#enviarNumero" prefHeight="27.0" prefWidth="180.0" text="Enviar">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <ComboBox fx:id="cmbDealer" onAction="#loadDealers" prefHeight="27.0" prefWidth="180.0" promptText="Dealler">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </ComboBox>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
-                           <children>
-                              <CheckBox fx:id="chkManha" mnemonicParsing="false" text="M">
-                                 <HBox.margin>
-                                    <Insets left="8.0" top="5.0" />
-                                 </HBox.margin>
-                              </CheckBox>
-                              <CheckBox fx:id="chkTarde" mnemonicParsing="false" text="T">
-                                 <HBox.margin>
-                                    <Insets left="8.0" top="5.0" />
-                                 </HBox.margin>
-                              </CheckBox>
-                              <CheckBox fx:id="chkNoite" mnemonicParsing="false" text="N">
-                                 <HBox.margin>
-                                    <Insets left="8.0" top="5.0" />
                                  </HBox.margin>
                               </CheckBox>
                            </children>

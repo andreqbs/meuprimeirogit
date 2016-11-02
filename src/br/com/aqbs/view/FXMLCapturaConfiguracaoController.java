@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -24,6 +25,10 @@ public class FXMLCapturaConfiguracaoController implements Initializable {
      */
     private CaptureTeste ct;
     private Thread x;
+    @FXML
+    private TextField txfLargura;
+    @FXML
+    private TextField txfAltura;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -32,7 +37,7 @@ public class FXMLCapturaConfiguracaoController implements Initializable {
 
     @FXML
     private void janelaCaptura(MouseEvent event) {
-        ct.mostrarJanela(40, 40);
+        ct.mostrarJanela(Integer.valueOf(txfLargura.getText()), Integer.valueOf(txfAltura.getText()));
         x.start();
 
     }

@@ -75,9 +75,9 @@ public class CaptureTeste {
     }
 
     public String identificarNumero() {
-        File imageFile = new File("/Users/andreqbs/NetBeansProjects/meuprimeirogit/foto.png");
+      File imageFile = new File("/Users/andreqbs/NetBeansProjects/meuprimeirogit/foto.png");
         //File imageFile = new File("D:\\Documentos\\NetBeansProjects\\meuprimeirogit\\foto.png");
-        instance.setDatapath("/Users/andreqbs/Downloads/Tess4J/");
+       instance.setDatapath("/Users/andreqbs/Downloads/Tess4J/");
         //instance.setDatapath("D:\\Downloads\\Tess4J\\");
         instance.setLanguage("eng");
         String result = null;

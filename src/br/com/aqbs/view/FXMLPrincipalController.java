@@ -51,12 +51,6 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private Button btnEnviar;
     @FXML
-    private CheckBox chkManha;
-    @FXML
-    private CheckBox chkTarde;
-    @FXML
-    private CheckBox chkNoite;
-    @FXML
     private ComboBox<String> cmbDealer;
     @FXML
     private TextField txfValor;
@@ -68,7 +62,6 @@ public class FXMLPrincipalController implements Initializable {
     private CheckBox chkWin;
     @FXML
     private CheckBox chkLost;
-    @FXML
     private TextField txfNumeroAnt;
     @FXML
     private TextField txfNovaAposta;
@@ -92,6 +85,11 @@ public class FXMLPrincipalController implements Initializable {
     private GerenciarDealer gd = new GerenciarDealer();
     private CaptureTeste a;
     private FXMLCapturaConfiguracaoController ccc;
+    private List<String> numerosSorteados = new ArrayList<>();
+    @FXML
+    private CheckBox chkAdd;
+    @FXML
+    private CheckBox chkRev;
 
     // private CapturaController cc;
     /**
@@ -111,8 +109,9 @@ public class FXMLPrincipalController implements Initializable {
 
     private void load() throws IOException {
         this.gc = new FXMLGraficoController();
+        gc.initData(gr);
         this.gc2 = new FXMLGraficoController();
-        FXMLMesaController mc = new FXMLMesaController(4);
+        //FXMLMesaController mc = new FXMLMesaController(4);
         vbxPrincipal.getChildren().addAll(gc);
 
     }
@@ -140,11 +139,9 @@ public class FXMLPrincipalController implements Initializable {
             Thread x = new Thread(e);
             tt.initData(x);
             a = tt.getCaptureTeste();
-            System.out.println(a);
         } catch (IOException e) {
             System.out.println("Erro ao gerar Frame de Captura");
         }
-
     }
 
     @FXML
@@ -164,21 +161,15 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private void enviarNumero() {
         String text = txfNumero.getText();
-        String turno;
-        String dealer;
-        gc.atualizarGrafico(text);
-        if (chkManha.isSelected()) {
-            turno = "M";
-        } else if (chkTarde.isSelected()) {
-            turno = "T";
-        } else {
-            turno = "N";
+        if (chkRev.isSelected()) {
+            gr.reavaliarGrafico();
+            numerosSorteados.set(0, text);
+            chkRev.setSelected(false);
+        } else if (chkAdd.isSelected()) {
+            numerosSorteados.add(0, text);
+            chkAdd.setSelected(false);
         }
-        dealer = cmbDealer.getValue();
-        gr.inserirNumero(text);
-        gc2.atualizarGrafico();
-        txfNumeroAnt.setText(text);
-        txfNumero.clear();
+        gc.atualizarGrafico(text);
 
     }
 
@@ -236,7 +227,18 @@ public class FXMLPrincipalController implements Initializable {
     private void loadApostas(ActionEvent event) {
     }
 
-    private void teste2() {
+    @FXML
+    private void configurarGrafico(ActionEvent event) {
+          try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLGraficoConfiguracao.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            // stage.setMaximized(true);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Erro ao gerar Frame de Configuração");
+        }
 
     }
 
@@ -246,24 +248,23 @@ public class FXMLPrincipalController implements Initializable {
         boolean flag = false;
         String cor;
         String valor;
-        List<String> numerosa = new ArrayList<>();
 
         @Override
         protected Void call() throws Exception {
             while (true) {
                 try {
-                    System.out.println("A111");
                     valor = a.getValor();
                     if (!valor.equals("-1")) {
-                        numerosa.add(0, valor);
-                        System.out.println("Inserindo" + valor + "Tamanho atual" + numerosa.size());
+                        gc.atualizarGrafico(valor);
+                        numerosSorteados.add(0, valor);
+                        // System.out.println("Inserindo" + valor + "Tamanho atual" + numerosSorteados.size());
                         Thread.sleep(1000);
-                        for (int i = 0; i < numerosa.size(); i++) {
+                        for (int i = 0; i < numerosSorteados.size(); i++) {
                             try {
                                 if (i < 4) {
                                     NumeroController na = (NumeroController) hbxNumeros1.getChildren().get(i);
-                                    na.setValor(numerosa.get(i));
-                                    cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
+                                    na.setValor(numerosSorteados.get(i));
+                                    cor = gr.pegarCor(Integer.valueOf(numerosSorteados.get(i)));
                                     if (cor.equals("Preto")) {
                                         na.setFundo(Color.BLACK);
                                     } else if (cor.equals("Vermelho")) {
@@ -274,8 +275,8 @@ public class FXMLPrincipalController implements Initializable {
                                 } else if (i > 3 && i < 8) {
                                     contador = 4;
                                     NumeroController na = (NumeroController) hbxNumeros2.getChildren().get(i - contador);
-                                    na.setValor(numerosa.get(i));
-                                    cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
+                                    na.setValor(numerosSorteados.get(i));
+                                    cor = gr.pegarCor(Integer.valueOf(numerosSorteados.get(i)));
 
                                     if (cor.equals("Preto")) {
                                         na.setFundo(Color.BLACK);
@@ -289,9 +290,9 @@ public class FXMLPrincipalController implements Initializable {
                                     contador = 8;
                                     System.out.println(i + " " + contador);
                                     NumeroController na = (NumeroController) hbxNumeros3.getChildren().get(i - contador);
-                                    na.setValor(numerosa.get(i));
-                                    System.out.println(numerosa.get(i));
-                                    cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
+                                    na.setValor(numerosSorteados.get(i));
+                                    System.out.println(numerosSorteados.get(i));
+                                    cor = gr.pegarCor(Integer.valueOf(numerosSorteados.get(i)));
                                     System.out.println(cor);
 
                                     if (cor.equals("Preto")) {
@@ -308,8 +309,8 @@ public class FXMLPrincipalController implements Initializable {
                                 } else if (i > 11 && i < 16) {
                                     contador = 12;
                                     NumeroController na = (NumeroController) hbxNumeros4.getChildren().get(i - contador);
-                                    na.setValor(numerosa.get(i));
-                                    cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
+                                    na.setValor(numerosSorteados.get(i));
+                                    cor = gr.pegarCor(Integer.valueOf(numerosSorteados.get(i)));
 
                                     if (cor.equals("Preto")) {
                                         na.setFundo(Color.BLACK);
@@ -322,8 +323,8 @@ public class FXMLPrincipalController implements Initializable {
                                 } else if (i > 15 && i < 20) {
                                     contador = 16;
                                     NumeroController na = (NumeroController) hbxNumeros5.getChildren().get(i - contador);
-                                    na.setValor(numerosa.get(i));
-                                    cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
+                                    na.setValor(numerosSorteados.get(i));
+                                    cor = gr.pegarCor(Integer.valueOf(numerosSorteados.get(i)));
 
                                     if (cor.equals("Preto")) {
                                         na.setFundo(Color.BLACK);
@@ -336,8 +337,8 @@ public class FXMLPrincipalController implements Initializable {
                                 } else if (i > 19 && i < 24) {
                                     contador = 20;
                                     NumeroController na = (NumeroController) hbxNumeros6.getChildren().get(i - contador);
-                                    na.setValor(numerosa.get(i));
-                                    cor = gr.pegarCor(Integer.valueOf(numerosa.get(i)));
+                                    na.setValor(numerosSorteados.get(i));
+                                    cor = gr.pegarCor(Integer.valueOf(numerosSorteados.get(i)));
                                     if (cor.equals("Preto")) {
                                         na.setFundo(Color.BLACK);
                                     } else if (cor.equals("Vermelho")) {
@@ -346,9 +347,9 @@ public class FXMLPrincipalController implements Initializable {
                                         na.setFundo(Color.GREEN);
                                     }
 
-                                    if (numerosa.size() > 23) {
-                                        System.out.println("Entrei aqui" + numerosa.size());
-                                        numerosa.remove(24);
+                                    if (numerosSorteados.size() > 23) {
+                                        System.out.println("Entrei aqui" + numerosSorteados.size());
+                                        numerosSorteados.remove(24);
                                         contador = 4;
                                     }
                                 }

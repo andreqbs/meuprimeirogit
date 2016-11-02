@@ -24,8 +24,9 @@ public class GerenciarRoleta {
     private DaoFactory javabase = DaoFactory.getInstance("javabase.jdbc");
     private NumeroDaoJDBC numeroDAO = javabase.getNumeroDAO();
     private List<Integer> l = new ArrayList<>();
+    private List<Integer> backup = new ArrayList<>();
     private Som s = new Som();
-    
+
     public GerenciarRoleta() {
         Thread threadDoPdf = new Thread(s);
         // threadDoPdf.start();
@@ -44,7 +45,7 @@ public class GerenciarRoleta {
         Numero n = new Numero(valor, pegarCor(v), theDate.toString(), turno, dealer);
         numeroDAO.create(n);
     }
-    
+
     public void inserirNumero(String valor) {
         int v = Integer.parseInt(valor);
         LocalDateTime timePoint = LocalDateTime.now();
@@ -53,7 +54,6 @@ public class GerenciarRoleta {
         Numero n = new Numero(valor, pegarCor(v), timePoint.format(DateTimeFormatter.ISO_LOCAL_DATE), timePoint.format(DateTimeFormatter.ISO_LOCAL_TIME), "Simonia");
         numeroDAO.create(n);
     }
-    
 
     public List<Integer> totalRodadas() {
 
@@ -77,33 +77,44 @@ public class GerenciarRoleta {
         return total;
     }
 
+    public void reavaliarGrafico() {
+        for (int i = 0; i < l.size(); i++) {
+            l.set(i, backup.get(i));
+        }
+    }
+
     public List<Integer> calculaEstatisticas(int valor) {
 
         if (l.isEmpty()) {
             for (int i = 0; i < 13; i++) {
                 l.add(0);
+                backup.add(0);
             }
         }
+        for (int i = 0; i < l.size(); i++) {
+            backup.set(i, l.get(i));
+        }
+
         int repeticoes;
 
         if (valor > 0 && valor < 13) {
             repeticoes = l.get(0);
             repeticoes++;
-            l.set(0, repeticoes);
+            l.set(0, 0);
             l.set(1, 0);
-            l.set(2, 0);
+            l.set(2, repeticoes);
         } else if (valor > 12 && valor < 25) {
             repeticoes = l.get(1);
             repeticoes++;
-            l.set(1, repeticoes);
-            l.set(0, 0);
+            l.set(1, 0);
+            l.set(0, repeticoes);
             l.set(2, 0);
         } else if (valor > 24 && valor < 37) {
             repeticoes = l.get(2);
             repeticoes++;
-            l.set(2, repeticoes);
+            l.set(2, 0);
             l.set(1, 0);
-            l.set(0, 0);
+            l.set(0, repeticoes);
         }
 
         if (valor > 0 && valor < 19) { //Metade menor
@@ -120,7 +131,7 @@ public class GerenciarRoleta {
             l.set(4, repeticoes);
             l.set(3, 0);
             if (repeticoes > 4) {
-               s.aviso();
+                s.aviso();
             }
         }
 
@@ -130,26 +141,26 @@ public class GerenciarRoleta {
 
             repeticoes = l.get(5);
             repeticoes++;
-            l.set(5, repeticoes);
+            l.set(5, 0);
             l.set(6, 0);
-            l.set(7, 0);
+            l.set(7, repeticoes);
         } else if (valor == 2 || valor == 5 || valor == 8 || valor == 11 || valor == 14
                 || valor == 17 || valor == 20 || valor == 23 || valor == 26
                 || valor == 29 || valor == 32 || valor == 35) {
 
             repeticoes = l.get(6);
             repeticoes++;
-            l.set(6, repeticoes);
             l.set(5, 0);
+            l.set(6, repeticoes);
             l.set(7, 0);
         } else if (valor == 3 || valor == 6 || valor == 9 || valor == 12 || valor == 15
                 || valor == 18 || valor == 21 || valor == 24 || valor == 27
                 || valor == 30 || valor == 33 || valor == 36) {
             repeticoes = l.get(7);
             repeticoes++;
-            l.set(7, repeticoes);
-            l.set(5, 0);
+            l.set(5, repeticoes);
             l.set(6, 0);
+            l.set(7, 0);
 
         }
 
@@ -237,7 +248,6 @@ public class GerenciarRoleta {
             l.set(7, 0);
             l.set(8, 0);
         }
-
         return l;
 
     }

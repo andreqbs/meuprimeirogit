@@ -30,19 +30,19 @@ import javafx.scene.layout.VBox;
  */
 public class FXMLGraficoController extends VBox {
 
-    final static String aposta1 = "1st 12";
-    final static String aposta2 = "2n 12";
-    final static String aposta3 = "3rd 12";
+    final static String aposta1 = "Dúzia 1 e 2";
+    final static String aposta2 = "Dúzia 1 e 3";
+    final static String aposta3 = "Dúzia 2 e 3";
     final static String aposta4 = "1 a 18";
     final static String aposta5 = "19 a 36";
-    final static String aposta6 = "Coluna 1";
-    final static String aposta7 = "Coluna 2";
-    final static String aposta8 = "Coluna 3";
+    final static String aposta6 = "Coluna 1 e 2";
+    final static String aposta7 = "Coluna 1 e 3";
+    final static String aposta8 = "Coluna 2 e 3";
     final static String aposta9 = "Par";
     final static String aposta10 = "Ímpar";
     final static String aposta11 = "Vermelho";
     final static String aposta12 = "Preto";
-    final static String aposta13 = "Quebrando";
+    final static String aposta13 = "Metade";
 
     @FXML
     private BarChart<String, Number> barChart;
@@ -51,7 +51,7 @@ public class FXMLGraficoController extends VBox {
     @FXML
     private CategoryAxis xAxis;
 
-    private GerenciarRoleta gr = new GerenciarRoleta();
+    private GerenciarRoleta gr;
 
     private XYChart.Series series1 = new XYChart.Series();
     @FXML
@@ -70,6 +70,10 @@ public class FXMLGraficoController extends VBox {
             throw new RuntimeException(exception);
         }
         gerarGrafico();
+    }
+    
+    public void initData(GerenciarRoleta gr) {
+        this.gr = gr;
     }
 
     public FXMLGraficoController(List<String> l) {
