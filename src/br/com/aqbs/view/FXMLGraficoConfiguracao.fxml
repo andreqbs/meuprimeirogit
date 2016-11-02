@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -7,11 +11,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.aqbs.view.FXMLGraficoConfiguracaoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.aqbs.view.FXMLGraficoConfiguracaoController">
    <children>
       <TitledPane animated="false" text="Tipo de Apostas">
          <content>
-            <VBox prefHeight="100.0" prefWidth="100.0">
+            <VBox fx:id="vbxApostas" prefHeight="100.0" prefWidth="100.0">
                <children>
                   <HBox prefHeight="20.0" prefWidth="200.0">
                      <children>
@@ -345,7 +349,7 @@
       </TitledPane>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" text="Gerar">
+            <Button mnemonicParsing="false" onMouseClicked="#pegarApostas" text="Gerar">
                <HBox.margin>
                   <Insets right="30.0" top="10.0" />
                </HBox.margin>

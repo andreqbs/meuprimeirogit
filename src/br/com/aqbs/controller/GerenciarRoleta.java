@@ -9,6 +9,7 @@ import br.com.aqbs.conexao.DaoFactory;
 import br.com.aqbs.dao.NumeroDaoJDBC;
 import br.com.aqbs.model.Numero;
 import br.com.aqbs.model.Som;
+import br.com.aqbs.view.FXMLGraficoConfiguracaoController;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +27,7 @@ public class GerenciarRoleta {
     private List<Integer> l = new ArrayList<>();
     private List<Integer> backup = new ArrayList<>();
     private Som s = new Som();
+    private FXMLGraficoConfiguracaoController gcc;
 
     public GerenciarRoleta() {
         Thread threadDoPdf = new Thread(s);
@@ -98,7 +100,7 @@ public class GerenciarRoleta {
         int repeticoes;
 
         if (valor > 0 && valor < 13) {
-            repeticoes = l.get(0);
+            repeticoes = l.get(2);
             repeticoes++;
             l.set(0, 0);
             l.set(1, 0);
@@ -110,7 +112,7 @@ public class GerenciarRoleta {
             l.set(1, repeticoes);
             l.set(2, 0);
         } else if (valor > 24 && valor < 37) {
-            repeticoes = l.get(2);
+            repeticoes = l.get(0);
             repeticoes++;
             l.set(0, repeticoes);
             l.set(1, 0);
@@ -139,7 +141,7 @@ public class GerenciarRoleta {
                 || valor == 16 || valor == 19 || valor == 22 || valor == 25
                 || valor == 28 || valor == 31 || valor == 34) {
 
-            repeticoes = l.get(5);
+            repeticoes = l.get(7);
             repeticoes++;
             l.set(5, 0);
             l.set(6, 0);
@@ -156,7 +158,7 @@ public class GerenciarRoleta {
         } else if (valor == 3 || valor == 6 || valor == 9 || valor == 12 || valor == 15
                 || valor == 18 || valor == 21 || valor == 24 || valor == 27
                 || valor == 30 || valor == 33 || valor == 36) {
-            repeticoes = l.get(7);
+            repeticoes = l.get(5);
             repeticoes++;
             l.set(5, repeticoes);
             l.set(6, 0);
@@ -248,6 +250,44 @@ public class GerenciarRoleta {
         }
         return l;
 
+    }
+    
+    public void calcularAposta() {
+        
+            if(l.get(0) > 3 ) {
+                
+            }
+            
+            if(l.get(1) > 3) {
+                
+            }
+            
+            if( l.get(2) > 3) {
+                
+            }
+            
+            if(l.get(3) > 9 ) {
+                
+            }
+            
+            if(l.get(4) > 9) {
+                
+            }
+            
+            if(l.get(5) > 3 ) {
+                
+            }
+            
+            if(l.get(6) > 3) {
+                
+            }
+            
+            if( l.get(7) > 3) {
+                
+
+            }
+        
+        
     }
 
     public String pegarCor(int valor) {

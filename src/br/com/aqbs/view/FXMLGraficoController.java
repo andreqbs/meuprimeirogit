@@ -51,13 +51,14 @@ public class FXMLGraficoController extends VBox {
     @FXML
     private CategoryAxis xAxis;
 
-    private GerenciarRoleta gr;
-
     private XYChart.Series series1 = new XYChart.Series();
     @FXML
     private ComboBox<?> cmbDealer;
     @FXML
     private Label cmbTipo;
+
+    private GerenciarRoleta gr;
+    private FXMLGraficoConfiguracaoController gcc;
 
     public FXMLGraficoController() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLGrafico.fxml"));
@@ -71,7 +72,7 @@ public class FXMLGraficoController extends VBox {
         }
         gerarGrafico();
     }
-    
+
     public void initData(GerenciarRoleta gr) {
         this.gr = gr;
     }

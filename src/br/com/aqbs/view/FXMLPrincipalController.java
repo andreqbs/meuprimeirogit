@@ -100,7 +100,7 @@ public class FXMLPrincipalController implements Initializable {
         try {
             load();
             loadNumeros();
-            loadDealer();
+//            loadDealer();
 
         } catch (IOException ex) {
             System.out.println("Erro ao iniciar servidor");
@@ -257,7 +257,6 @@ public class FXMLPrincipalController implements Initializable {
                     if (!valor.equals("-1")) {
                         gc.atualizarGrafico(valor);
                         numerosSorteados.add(0, valor);
-                        // System.out.println("Inserindo" + valor + "Tamanho atual" + numerosSorteados.size());
                         Thread.sleep(1000);
                         for (int i = 0; i < numerosSorteados.size(); i++) {
                             try {
@@ -288,12 +287,10 @@ public class FXMLPrincipalController implements Initializable {
 
                                 } else if (i > 7 && i < 12) {
                                     contador = 8;
-                                    System.out.println(i + " " + contador);
                                     NumeroController na = (NumeroController) hbxNumeros3.getChildren().get(i - contador);
                                     na.setValor(numerosSorteados.get(i));
                                     System.out.println(numerosSorteados.get(i));
                                     cor = gr.pegarCor(Integer.valueOf(numerosSorteados.get(i)));
-                                    System.out.println(cor);
 
                                     if (cor.equals("Preto")) {
                                         na.setFundo(Color.BLACK);
@@ -301,9 +298,6 @@ public class FXMLPrincipalController implements Initializable {
                                         na.setFundo(Color.RED);
                                     } else if (cor.equals("Verde")) {
                                         na.setFundo(Color.GREEN);
-                                    }
-                                    if (i == 11) {
-                                        System.out.println("Ok L3");
                                     }
 
                                 } else if (i > 11 && i < 16) {
@@ -348,9 +342,7 @@ public class FXMLPrincipalController implements Initializable {
                                     }
 
                                     if (numerosSorteados.size() > 23) {
-                                        System.out.println("Entrei aqui" + numerosSorteados.size());
-                                        numerosSorteados.remove(24);
-                                        contador = 4;
+                                        numerosSorteados.remove(24);            
                                     }
                                 }
                             } catch (NumberFormatException e) {

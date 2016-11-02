@@ -75,10 +75,10 @@ public class CaptureTeste {
     }
 
     public String identificarNumero() {
-        File imageFile = new File("/Users/andreqbs/NetBeansProjects/meuprimeirogit/foto.png");
-        //File imageFile = new File("D:\\Documentos\\NetBeansProjects\\meuprimeirogit\\foto.png");
-        instance.setDatapath("/Users/andreqbs/Downloads/Tess4J/");
-        //instance.setDatapath("D:\\Downloads\\Tess4J\\");
+        //File imageFile = new File("/Users/andreqbs/NetBeansProjects/meuprimeirogit/foto.png");
+        File imageFile = new File("D:\\Documentos\\NetBeansProjects\\meuprimeirogit\\foto.png");
+        //instance.setDatapath("/Users/andreqbs/Downloads/Tess4J/");
+        instance.setDatapath("D:\\Downloads\\Tess4J\\");
         instance.setLanguage("eng");
         String result = null;
         try {
@@ -163,11 +163,10 @@ public class CaptureTeste {
                             ImageIO.write(screenshot, "png", new File("foto.png"));
 
                             valor = identificarNumero();
-                            // System.out.println(valor);
                             if (valor.equals("-1")) {
                                 valor = "-1";
                             } else {
-                                gr.inserirNumero(valor);
+                              //  gr.inserirNumero(valor);
                                 ThreadReadData3.sleep(52000);
                             }
 
