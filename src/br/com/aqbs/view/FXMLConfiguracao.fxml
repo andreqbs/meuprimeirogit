@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.aqbs.view.FXMLConfiguracaoController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+         <children>
+            <VBox maxHeight="40.0" prefHeight="50.0" prefWidth="410.0">
+               <children>
+                  <HBox prefHeight="40.0" prefWidth="300.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="95.0" text="Local da captura  ">
+                           <HBox.margin>
+                              <Insets left="15.0" right="1.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txfWinImagem" prefHeight="25.0" prefWidth="251.0" text="D:\\Documentos\\NetBeansProjects\\meuprimeirogit\\foto.png">
+                           <HBox.margin>
+                              <Insets left="15.0" top="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" text="...">
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="300.0">
+                     <children>
+                        <Label text="Local da Tesseract">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txfWinJar" prefHeight="25.0" prefWidth="251.0" text="D:\\Downloads\\Tess4J\\">
+                           <HBox.margin>
+                              <Insets left="15.0" top="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" text="...">
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <CheckBox fx:id="chkWin" mnemonicParsing="false" text="Windows">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </CheckBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="200.0">
+         <children>
+            <VBox maxHeight="40.0" prefHeight="50.0" prefWidth="410.0">
+               <children>
+                  <HBox prefHeight="40.0" prefWidth="300.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="95.0" text="Local da captura  ">
+                           <HBox.margin>
+                              <Insets left="15.0" right="1.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txfMacImagem" prefHeight="25.0" prefWidth="251.0" text="/Users/andreqbs/NetBeansProjects/meuprimeirogit/foto.png">
+                           <HBox.margin>
+                              <Insets left="15.0" top="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" text="...">
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="300.0">
+                     <children>
+                        <Label text="Local da Tesseract">
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txfMacJar" prefHeight="25.0" prefWidth="251.0" text="/Users/andreqbs/Downloads/Tess4J/">
+                           <HBox.margin>
+                              <Insets left="15.0" top="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" text="...">
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <CheckBox fx:id="chkMac" mnemonicParsing="false" text="MacOSX">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </CheckBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#salvarPreferencias" text="Salvar">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Cancelar" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

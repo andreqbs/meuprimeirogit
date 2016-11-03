@@ -9,13 +9,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.aqbs.view.FXMLPrincipalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.aqbs.view.FXMLPrincipalController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Arquivo">
+          <Menu mnemonicParsing="false" onAction="#configurarLocal" text="RoulleteBet">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" text="Configuração" />
+                  <MenuItem mnemonicParsing="false" text="Conexão" />
+                  <MenuItem mnemonicParsing="false" text="Fechar" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Visualizar">
@@ -82,11 +84,6 @@
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <TextField fx:id="txfNumero" prefHeight="27.0" prefWidth="70.0" />
-                        <Button fx:id="btnEnviar" mnemonicParsing="false" onMouseClicked="#enviarNumero" prefHeight="27.0" prefWidth="180.0" text="Enviar">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
                         <ComboBox fx:id="cmbDealer" onAction="#loadDealers" prefHeight="27.0" prefWidth="180.0" promptText="Dealler">
                            <VBox.margin>
                               <Insets top="10.0" />
@@ -109,6 +106,11 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </HBox>
+                        <Button fx:id="btnEnviar" mnemonicParsing="false" onMouseClicked="#enviarNumero" prefHeight="27.0" prefWidth="180.0" text="Enviar">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                   </VBox>
                </content>
@@ -164,12 +166,12 @@
                <content>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#gerarGraficoApostas" text="Gerar Gráfico">
+                        <Button fx:id="btnGerarGrafico" disable="true" mnemonicParsing="false" onMouseClicked="#gerarGraficoApostas" text="Gerar Gráfico">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onMouseClicked="#pararCaptura" text="Parar Captura" />
+                        <Button fx:id="btnPararCaptura" disable="true" mnemonicParsing="false" onMouseClicked="#pararCaptura" text="Parar Captura" />
                      </children>
                   </VBox>
                </content>

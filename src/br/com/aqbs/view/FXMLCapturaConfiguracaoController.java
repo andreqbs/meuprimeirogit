@@ -29,6 +29,9 @@ public class FXMLCapturaConfiguracaoController implements Initializable {
     private TextField txfLargura;
     @FXML
     private TextField txfAltura;
+    
+    private String localImagem;
+    private String localJar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -38,6 +41,7 @@ public class FXMLCapturaConfiguracaoController implements Initializable {
     @FXML
     private void janelaCaptura(MouseEvent event) {
         ct.mostrarJanela(Integer.valueOf(txfLargura.getText()), Integer.valueOf(txfAltura.getText()));
+        ct.setLocal(localImagem, localJar);
         x.start();
 
     }
@@ -48,6 +52,11 @@ public class FXMLCapturaConfiguracaoController implements Initializable {
 
     void initData(Thread x) {
         this.x = x;
+    }
+    
+    void inicializarLocal(String localImagem, String localJar) {
+        this.localImagem = localImagem;
+        this.localJar = localJar;
     }
 
 }

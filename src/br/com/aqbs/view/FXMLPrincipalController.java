@@ -78,6 +78,7 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private HBox hbxNumeros6;
 
+    private FXMLConfiguracaoController fcc;
     private FXMLGraficoController gc;
     private FXMLGraficoController gc2;
     private CapturaController cc;
@@ -92,6 +93,10 @@ public class FXMLPrincipalController implements Initializable {
     private CheckBox chkAdd;
     @FXML
     private CheckBox chkRev;
+    @FXML
+    private Button btnGerarGrafico;
+    @FXML
+    private Button btnPararCaptura;
 
     // private CapturaController cc;
     /**
@@ -112,7 +117,7 @@ public class FXMLPrincipalController implements Initializable {
     private void load() throws IOException {
         this.gc = new FXMLGraficoController();
         gc.initData(gr, null);
-       // this.gc2 = new FXMLGraficoController();
+        // this.gc2 = new FXMLGraficoController();
         //FXMLMesaController mc = new FXMLMesaController(4);
         vbxPrincipal.getChildren().addAll(gc);
 
@@ -140,7 +145,9 @@ public class FXMLPrincipalController implements Initializable {
             t = new teste();
             Thread x = new Thread(t);
             tt.initData(x);
+            tt.inicializarLocal(fcc.getLocalCaptura(), fcc.getLocalJAR());
             ct = tt.getCaptureTeste();
+            btnPararCaptura.setDisable(false);
         } catch (IOException e) {
             System.out.println("Erro ao gerar Frame de Captura");
         }
@@ -240,6 +247,7 @@ public class FXMLPrincipalController implements Initializable {
             gcc = tt;
             stage.setScene(new Scene(root));
             stage.show();
+            btnGerarGrafico.setDisable(false);
         } catch (IOException e) {
             System.out.println("Erro ao gerar Frame de Configuração");
         }
@@ -249,6 +257,7 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private void gerarGraficoApostas(MouseEvent event) {
         gc.gerarGrafico(gcc.getApostas());
+        btnGerarGrafico.setDisable(true);
     }
 
     @FXML
@@ -256,6 +265,23 @@ public class FXMLPrincipalController implements Initializable {
         t.cancel();
         ct.finalizarJanela();
         ct = null;
+        btnPararCaptura.setDisable(true);
+    }
+
+    @FXML
+    private void configurarLocal(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLConfiguracao.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+            FXMLConfiguracaoController tt = fxmlLoader.<FXMLConfiguracaoController>getController();
+            fcc = tt;
+        } catch (IOException e) {
+            System.out.println("Erro ao gerar Frame de Configuração");
+        }
+
     }
 
     private class teste extends Task<Void> {

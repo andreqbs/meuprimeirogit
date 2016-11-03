@@ -43,6 +43,8 @@ public class CaptureTeste {
     private String valor = "-1";
     private ThreadReadData3 t;
     private  TransparentFrame tw;
+    private String localCaptura;
+    private String localJAR;
 
     public String getValor() {
         return valor;
@@ -81,9 +83,9 @@ public class CaptureTeste {
     }
 
     public String identificarNumero() {
-        File imageFile = new File("/Users/andreqbs/NetBeansProjects/meuprimeirogit/foto.png");
+        File imageFile = new File(localCaptura);
         //File imageFile = new File("D:\\Documentos\\NetBeansProjects\\meuprimeirogit\\foto.png");
-        instance.setDatapath("/Users/andreqbs/Downloads/Tess4J/");
+        instance.setDatapath(localJAR);
         //instance.setDatapath("D:\\Downloads\\Tess4J\\");
         instance.setLanguage("eng");
         String result = null;
@@ -121,6 +123,11 @@ public class CaptureTeste {
         }
         valor = "-1";
         return valor;
+    }
+
+    public void setLocal(String localCaptura, String localJAR) {
+        this.localCaptura = localCaptura;
+        this.localJAR = localJAR;
     }
 
     class TransparentFrame extends JFrame implements MouseMotionListener, ActionListener {
