@@ -83,9 +83,11 @@ public class FXMLPrincipalController implements Initializable {
     private CapturaController cc;
     private GerenciarRoleta gr = new GerenciarRoleta();
     private GerenciarDealer gd = new GerenciarDealer();
-    private CaptureTeste a;
+    private CaptureTeste ct;
     private FXMLCapturaConfiguracaoController ccc;
+    private FXMLGraficoConfiguracaoController gcc;
     private List<String> numerosSorteados = new ArrayList<>();
+    private teste t;
     @FXML
     private CheckBox chkAdd;
     @FXML
@@ -109,8 +111,8 @@ public class FXMLPrincipalController implements Initializable {
 
     private void load() throws IOException {
         this.gc = new FXMLGraficoController();
-        gc.initData(gr);
-        this.gc2 = new FXMLGraficoController();
+        gc.initData(gr, null);
+       // this.gc2 = new FXMLGraficoController();
         //FXMLMesaController mc = new FXMLMesaController(4);
         vbxPrincipal.getChildren().addAll(gc);
 
@@ -135,10 +137,10 @@ public class FXMLPrincipalController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
             FXMLCapturaConfiguracaoController tt = fxmlLoader.<FXMLCapturaConfiguracaoController>getController();
-            teste e = new teste();
-            Thread x = new Thread(e);
+            t = new teste();
+            Thread x = new Thread(t);
             tt.initData(x);
-            a = tt.getCaptureTeste();
+            ct = tt.getCaptureTeste();
         } catch (IOException e) {
             System.out.println("Erro ao gerar Frame de Captura");
         }
@@ -229,17 +231,31 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void configurarGrafico(ActionEvent event) {
-          try {
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLGraficoConfiguracao.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             // stage.setMaximized(true);
+            FXMLGraficoConfiguracaoController tt = fxmlLoader.<FXMLGraficoConfiguracaoController>getController();
+            gcc = tt;
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
             System.out.println("Erro ao gerar Frame de Configuração");
         }
 
+    }
+
+    @FXML
+    private void gerarGraficoApostas(MouseEvent event) {
+        gc.gerarGrafico(gcc.getApostas());
+    }
+
+    @FXML
+    private void pararCaptura(MouseEvent event) {
+        t.cancel();
+        ct.finalizarJanela();
+        ct = null;
     }
 
     private class teste extends Task<Void> {
@@ -253,7 +269,7 @@ public class FXMLPrincipalController implements Initializable {
         protected Void call() throws Exception {
             while (true) {
                 try {
-                    valor = a.getValor();
+                    valor = ct.getValor();
                     if (!valor.equals("-1")) {
                         gc.atualizarGrafico(valor);
                         numerosSorteados.add(0, valor);
@@ -342,13 +358,13 @@ public class FXMLPrincipalController implements Initializable {
                                     }
 
                                     if (numerosSorteados.size() > 23) {
-                                        numerosSorteados.remove(24);            
+                                        numerosSorteados.remove(24);
                                     }
                                 }
                             } catch (NumberFormatException e) {
                                 System.out.println("Erro na geracao da cor");
                             }
-                            a.setValor("-1");
+                            ct.setValor("-1");
                         }
                         Thread.sleep(55000);
                     }

@@ -33,8 +33,6 @@ import net.sourceforge.tess4j.TesseractException;
  */
 public class CaptureTeste {
 
-    JFrame p;
-
     public static boolean windowReader = false;
     private int largura;
     private int altura;
@@ -43,6 +41,8 @@ public class CaptureTeste {
     List<String> numeros = new ArrayList<>();
     private GerenciarRoleta gr = new GerenciarRoleta();
     private String valor = "-1";
+    private ThreadReadData3 t;
+    private  TransparentFrame tw;
 
     public String getValor() {
         return valor;
@@ -54,6 +54,12 @@ public class CaptureTeste {
 
     public CaptureTeste() {
 
+    }
+    
+    public void finalizarJanela() {
+        t.interrupt();
+        tw.setVisible(false);
+       
     }
 
     public void mostrarJanela(int altura, int largura) {
@@ -68,17 +74,17 @@ public class CaptureTeste {
             System.exit(0);
         }
 
-        TransparentFrame tw = new TransparentFrame();
+        tw = new TransparentFrame();
         tw.setOpacity(0.3f);
         tw.setVisible(true);
 
     }
 
     public String identificarNumero() {
-        //File imageFile = new File("/Users/andreqbs/NetBeansProjects/meuprimeirogit/foto.png");
-        File imageFile = new File("D:\\Documentos\\NetBeansProjects\\meuprimeirogit\\foto.png");
-        //instance.setDatapath("/Users/andreqbs/Downloads/Tess4J/");
-        instance.setDatapath("D:\\Downloads\\Tess4J\\");
+        File imageFile = new File("/Users/andreqbs/NetBeansProjects/meuprimeirogit/foto.png");
+        //File imageFile = new File("D:\\Documentos\\NetBeansProjects\\meuprimeirogit\\foto.png");
+        instance.setDatapath("/Users/andreqbs/Downloads/Tess4J/");
+        //instance.setDatapath("D:\\Downloads\\Tess4J\\");
         instance.setLanguage("eng");
         String result = null;
         try {
@@ -125,9 +131,10 @@ public class CaptureTeste {
             setLayout(new GridBagLayout());
             setSize(largura, altura);
             setLocation(535, 435);
-            ThreadReadData3 t = new ThreadReadData3();
+            t = new ThreadReadData3();
             t.windowReference = this;
             t.start();
+           
         }
 
         @Override

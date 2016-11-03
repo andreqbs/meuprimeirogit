@@ -349,7 +349,7 @@
       </TitledPane>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#pegarApostas" text="Gerar">
+            <Button mnemonicParsing="false" onMouseClicked="#pegarApostas" text="Salvar">
                <HBox.margin>
                   <Insets right="30.0" top="10.0" />
                </HBox.margin>

@@ -73,27 +73,16 @@ public class FXMLGraficoController extends VBox {
         gerarGrafico();
     }
 
-    public void initData(GerenciarRoleta gr) {
+    public void initData(GerenciarRoleta gr, FXMLGraficoConfiguracaoController gcc) {
         this.gr = gr;
-    }
-
-    public FXMLGraficoController(List<String> l) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLGrafico.fxml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
-
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-        gerarGrafico();
+        this.gcc = gcc;
     }
 
     public void gerarGrafico() {
 
         xAxis.setLabel("Apostas");
         yAxis.setLabel("% Acerto");
+
         series1.getData().add(new XYChart.Data(aposta1, 0));
         series1.getData().add(new XYChart.Data(aposta2, 0));
         series1.getData().add(new XYChart.Data(aposta3, 0));
@@ -116,6 +105,9 @@ public class FXMLGraficoController extends VBox {
 
         xAxis.setLabel("Apostas");
         yAxis.setLabel("% Acerto");
+        series1.getData().clear();
+        barChart.getData().clear();
+
         for (int i = 0; i < l.size(); i++) {
             series1.getData().add(new XYChart.Data(l.get(i), 0));
         }
