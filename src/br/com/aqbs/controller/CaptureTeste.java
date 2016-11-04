@@ -38,7 +38,6 @@ public class CaptureTeste {
     private int altura;
 
     ITesseract instance = new Tesseract();
-    List<String> numeros = new ArrayList<>();
     private GerenciarRoleta gr;
     private String valor = "-1";
     private ThreadReadData3 t;

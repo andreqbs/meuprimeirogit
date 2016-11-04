@@ -6,6 +6,7 @@
 package br.com.aqbs.view;
 
 import br.com.aqbs.controller.CaptureTeste;
+import br.com.aqbs.controller.ControlerLeituraEscrita;
 import br.com.aqbs.controller.GerenciarDealer;
 import br.com.aqbs.controller.GerenciarRoleta;
 import br.com.aqbs.model.Dealer;
@@ -14,8 +15,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -82,8 +81,7 @@ public class FXMLPrincipalController implements Initializable {
     private FXMLGraficoController gc2;
     private CapturaController cc;
     private GerenciarRoleta gr = new GerenciarRoleta();
-    private GerenciarDealer gd = new GerenciarDealer();
-    private CaptureTeste ct;
+   
     private FXMLCapturaConfiguracaoController ccc;
     private FXMLGraficoConfiguracaoController gcc;
     private List<String> numerosSorteados = new ArrayList<>();
@@ -135,26 +133,26 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void capturarImagem() {
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLCapturaConfiguracao.fxml"));
-//            Parent root = (Parent) fxmlLoader.load();
-//            Stage stage = new Stage();
-//            // stage.setMaximized(true);
-//            stage.setScene(new Scene(root));
-//            stage.show();
-//            FXMLCapturaConfiguracaoController tt = fxmlLoader.<FXMLCapturaConfiguracaoController>getController();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLCapturaConfiguracao.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            // stage.setMaximized(true);
+            stage.setScene(new Scene(root));
+            stage.show();
+            FXMLCapturaConfiguracaoController tt = fxmlLoader.<FXMLCapturaConfiguracaoController>getController();
 //            t = new teste();
 //            Thread x = new Thread(t);
-//            tt.initData(x);
-//            tt.inicializarLocal(fcc.getLocalCaptura(), fcc.getLocalJAR());
+          //  tt.initData(x);
+            tt.inicializarLocal(fcc.getLocalCaptura(), fcc.getLocalJAR());
+//            ControlerLeituraEscrita a = new ControlerLeituraEscrita();
 //            ct = tt.getCaptureTeste();
 //            ct.initData(gr);
-//            btnPararCaptura.setDisable(false);
-//        } catch (IOException e) {
-//            System.out.println("Erro ao gerar Frame de Captura");
-//        }
-            CapturaController a = new CapturaController();
-            a.showWindow();
+            btnPararCaptura.setDisable(false);
+        } catch (IOException e) {
+            System.out.println("Erro ao gerar Frame de Captura");
+        }
+            
             btnPararCaptura.setDisable(false);
        
     }
@@ -165,7 +163,6 @@ public class FXMLPrincipalController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLDealer.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
-            // stage.setMaximized(true);
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -190,14 +187,14 @@ public class FXMLPrincipalController implements Initializable {
 
     private void loadDealer() {
 
-        List<Dealer> listar = gd.listar();
-        ObservableList<String> options
-                = FXCollections.observableArrayList();
-        options.clear();
-        for (int i = 0; i < listar.size(); i++) {
-            options.add(listar.get(i).getNome());
-        }
-        cmbDealer.setItems(options);
+//        List<Dealer> listar = gd.listar();
+//        ObservableList<String> options
+//                = FXCollections.observableArrayList();
+//        options.clear();
+//        for (int i = 0; i < listar.size(); i++) {
+//            options.add(listar.get(i).getNome());
+//        }
+//        cmbDealer.setItems(options);
 
     }
 
@@ -265,8 +262,8 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private void pararCaptura(MouseEvent event) {
         t.cancel();
-        ct.finalizarJanela();
-        ct = null;
+//        ct.finalizarJanela();
+//        ct = null;
         btnPararCaptura.setDisable(true);
     }
 
@@ -306,7 +303,7 @@ public class FXMLPrincipalController implements Initializable {
         protected Void call() throws Exception {
             while (true) {
                 try {
-                    valor = ct.getValor();
+                   // valor = ct.getValor();
                     if (!valor.equals("-1")) {
                         gc.atualizarGrafico(valor);
                         numerosSorteados.add(0, valor);
@@ -394,14 +391,15 @@ public class FXMLPrincipalController implements Initializable {
                                         na.setFundo(Color.GREEN);
                                     }
 
-                                    if (numerosSorteados.size() > 23) {
+                                    if (i > 23) {
                                         numerosSorteados.remove(24);
+                                        break;
                                     }
                                 }
                             } catch (NumberFormatException e) {
                                 System.out.println("Erro na geracao da cor");
                             }
-                            ct.setValor("-1");
+                         //   ct.setValor("-1");
                         }
                         Thread.sleep(55000);
                     }

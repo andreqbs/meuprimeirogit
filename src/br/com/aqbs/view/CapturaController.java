@@ -47,15 +47,12 @@ public class CapturaController {
     private int altura = 0;
     static Stage primaryStage;
     Robot robot = com.sun.glass.ui.Application.GetApplication().createRobot();
-    Pixels glassPixels;
-    Image image;
-
     private int incial = 10;
 
     public static final int BYTE_BUFFER_BYTES_PER_COMPONENT = 1;
     public static final int INT_BUFFER_BYTES_PER_COMPONENT = 4;
 
-    public void showWindow() {
+    public void showWindow(int largura, int altura) {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Captura.fxml"));
@@ -63,7 +60,7 @@ public class CapturaController {
             Stage stage = new Stage();
             primaryStage = stage;
             stage.initStyle(StageStyle.TRANSPARENT);
-            Scene scene = new Scene(root, 29, 29);
+            Scene scene = new Scene(root,largura, altura);
             scene.setFill(null);
             stage.setScene(scene);
             stage.show();
@@ -101,9 +98,9 @@ public class CapturaController {
         });
     }
 
-    public void mudarPosicao() {
+    private void mudarPosicao(int valor) {
 
-        primaryStage.setX(incial++);
+        primaryStage.setX(primaryStage.getX() + valor);
 
     }
 
@@ -116,8 +113,8 @@ public class CapturaController {
         y = (int) yOffset;
         largura = (int) primaryStage.getWidth();
         altura = (int) primaryStage.getHeight();
-        glassPixels = robot.getScreenCapture(x, y, largura, altura);
-        image = convertFromGlassPixels(glassPixels);
+        Pixels glassPixels = robot.getScreenCapture(x, y, largura, altura);
+        Image image = convertFromGlassPixels(glassPixels);
 
         File file = new File("foto2.png");
 
@@ -165,23 +162,19 @@ public class CapturaController {
         throw new UnsupportedOperationException("Writing from byte buffer is not supported.");
     }
 
-    public void capturarDinamico() {
+    public void capturaDinamico() {
         Task task = new Task<Void>() {
             @Override
             public Void call() throws Exception {
                 while (true) {
-                    int i = 200;
                     Platform.runLater(new Runnable() {
                         @Override
-
                         public void run() {
                             capturar();
-                            mudarPosicao();
-
+                            mudarPosicao(50);
                         }
                     });
-                    Thread.sleep(3000);
-                    i += 10;
+                    Thread.sleep(2000);
                 }
             }
         };
@@ -190,7 +183,7 @@ public class CapturaController {
         th.start();
     }
 
-    public void capturarEstatico() {
+    public void capturaEstatico() {
         Task task = new Task<Void>() {
             @Override
             public Void call() throws Exception {
@@ -198,15 +191,11 @@ public class CapturaController {
                     int i = 200;
                     Platform.runLater(new Runnable() {
                         @Override
-
                         public void run() {
                             capturar();
-                            mudarPosicao();
-
                         }
                     });
-                    Thread.sleep(3000);
-                    i += 10;
+                    Thread.sleep(52000);
                 }
             }
         };
