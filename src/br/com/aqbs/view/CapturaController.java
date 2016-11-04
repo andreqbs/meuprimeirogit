@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.IntBuffer;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -49,6 +50,8 @@ public class CapturaController {
     Pixels glassPixels;
     Image image;
 
+    private int incial = 10;
+
     public static final int BYTE_BUFFER_BYTES_PER_COMPONENT = 1;
     public static final int INT_BUFFER_BYTES_PER_COMPONENT = 4;
 
@@ -64,8 +67,8 @@ public class CapturaController {
             scene.setFill(null);
             stage.setScene(scene);
             stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Erro");
         }
     }
 
@@ -98,6 +101,12 @@ public class CapturaController {
         });
     }
 
+    public void mudarPosicao() {
+
+        primaryStage.setX(incial++);
+
+    }
+
     public void capturar() {
 
 //        primaryStage = (Stage) pnPrincipal.getScene().getWindow();
@@ -110,10 +119,10 @@ public class CapturaController {
         glassPixels = robot.getScreenCapture(x, y, largura, altura);
         image = convertFromGlassPixels(glassPixels);
 
-        File file = new File("foto.jpg");
+        File file = new File("foto2.png");
 
         try {
-            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "jpg", file);
+            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
         } catch (IOException e) {
             // TODO: handle exception here
         }
@@ -156,13 +165,54 @@ public class CapturaController {
         throw new UnsupportedOperationException("Writing from byte buffer is not supported.");
     }
 
-    public void teste() {
-        Platform.runLater(new Runnable() {
+    public void capturarDinamico() {
+        Task task = new Task<Void>() {
             @Override
-            public void run() {
-                capturar();
+            public Void call() throws Exception {
+                while (true) {
+                    int i = 200;
+                    Platform.runLater(new Runnable() {
+                        @Override
+
+                        public void run() {
+                            capturar();
+                            mudarPosicao();
+
+                        }
+                    });
+                    Thread.sleep(3000);
+                    i += 10;
+                }
             }
-        });
+        };
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
+    }
+
+    public void capturarEstatico() {
+        Task task = new Task<Void>() {
+            @Override
+            public Void call() throws Exception {
+                while (true) {
+                    int i = 200;
+                    Platform.runLater(new Runnable() {
+                        @Override
+
+                        public void run() {
+                            capturar();
+                            mudarPosicao();
+
+                        }
+                    });
+                    Thread.sleep(3000);
+                    i += 10;
+                }
+            }
+        };
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
     }
 
 }

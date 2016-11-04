@@ -135,24 +135,28 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void capturarImagem() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLCapturaConfiguracao.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            // stage.setMaximized(true);
-            stage.setScene(new Scene(root));
-            stage.show();
-            FXMLCapturaConfiguracaoController tt = fxmlLoader.<FXMLCapturaConfiguracaoController>getController();
-            t = new teste();
-            Thread x = new Thread(t);
-            tt.initData(x);
-            tt.inicializarLocal(fcc.getLocalCaptura(), fcc.getLocalJAR());
-            ct = tt.getCaptureTeste();
-            ct.initData(gr);
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLCapturaConfiguracao.fxml"));
+//            Parent root = (Parent) fxmlLoader.load();
+//            Stage stage = new Stage();
+//            // stage.setMaximized(true);
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//            FXMLCapturaConfiguracaoController tt = fxmlLoader.<FXMLCapturaConfiguracaoController>getController();
+//            t = new teste();
+//            Thread x = new Thread(t);
+//            tt.initData(x);
+//            tt.inicializarLocal(fcc.getLocalCaptura(), fcc.getLocalJAR());
+//            ct = tt.getCaptureTeste();
+//            ct.initData(gr);
+//            btnPararCaptura.setDisable(false);
+//        } catch (IOException e) {
+//            System.out.println("Erro ao gerar Frame de Captura");
+//        }
+            CapturaController a = new CapturaController();
+            a.showWindow();
             btnPararCaptura.setDisable(false);
-        } catch (IOException e) {
-            System.out.println("Erro ao gerar Frame de Captura");
-        }
+       
     }
 
     @FXML
@@ -225,7 +229,6 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private void inserirAposta(ActionEvent event) {
     }
-
 
     @FXML
     private void enviarAposta(MouseEvent event) {
@@ -303,7 +306,7 @@ public class FXMLPrincipalController implements Initializable {
         protected Void call() throws Exception {
             while (true) {
                 try {
-                    valor = ct.getValor();           
+                    valor = ct.getValor();
                     if (!valor.equals("-1")) {
                         gc.atualizarGrafico(valor);
                         numerosSorteados.add(0, valor);
