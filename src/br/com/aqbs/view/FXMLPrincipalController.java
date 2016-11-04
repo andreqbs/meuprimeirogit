@@ -50,7 +50,6 @@ public class FXMLPrincipalController implements Initializable {
     private TextField txfNumero;
     @FXML
     private Button btnEnviar;
-    @FXML
     private ComboBox<String> cmbDealer;
     @FXML
     private TextField txfValor;
@@ -97,6 +96,8 @@ public class FXMLPrincipalController implements Initializable {
     private Button btnGerarGrafico;
     @FXML
     private Button btnPararCaptura;
+    @FXML
+    private TextField txfDealer;
 
     // private CapturaController cc;
     /**
@@ -147,6 +148,7 @@ public class FXMLPrincipalController implements Initializable {
             tt.initData(x);
             tt.inicializarLocal(fcc.getLocalCaptura(), fcc.getLocalJAR());
             ct = tt.getCaptureTeste();
+            ct.initData(gr);
             btnPararCaptura.setDisable(false);
         } catch (IOException e) {
             System.out.println("Erro ao gerar Frame de Captura");
@@ -224,9 +226,6 @@ public class FXMLPrincipalController implements Initializable {
     private void inserirAposta(ActionEvent event) {
     }
 
-    @FXML
-    private void loadDealers(ActionEvent event) {
-    }
 
     @FXML
     private void enviarAposta(MouseEvent event) {
@@ -284,6 +283,15 @@ public class FXMLPrincipalController implements Initializable {
 
     }
 
+    @FXML
+    private void capturarDealer(ActionEvent event) {
+    }
+
+    @FXML
+    private void setarDealer(MouseEvent event) {
+        gr.setDealer(txfDealer.getText());
+    }
+
     private class teste extends Task<Void> {
 
         int contador = 4;
@@ -295,7 +303,7 @@ public class FXMLPrincipalController implements Initializable {
         protected Void call() throws Exception {
             while (true) {
                 try {
-                    valor = ct.getValor();
+                    valor = ct.getValor();           
                     if (!valor.equals("-1")) {
                         gc.atualizarGrafico(valor);
                         numerosSorteados.add(0, valor);

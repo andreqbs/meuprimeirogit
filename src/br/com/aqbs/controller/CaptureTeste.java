@@ -39,7 +39,7 @@ public class CaptureTeste {
 
     ITesseract instance = new Tesseract();
     List<String> numeros = new ArrayList<>();
-    private GerenciarRoleta gr = new GerenciarRoleta();
+    private GerenciarRoleta gr;
     private String valor = "-1";
     private ThreadReadData3 t;
     private  TransparentFrame tw;
@@ -52,6 +52,11 @@ public class CaptureTeste {
 
     public void setValor(String valor) {
         this.valor = valor;
+    }
+    
+    public void initData(GerenciarRoleta gr) {
+        this.gr = gr;
+        
     }
 
     public CaptureTeste() {
@@ -95,8 +100,7 @@ public class CaptureTeste {
                 valor = result.substring(0, 1);
                 if (valor.equals("0") || valor.equals("1") || valor.equals("2") || valor.equals("2") || valor.equals("3")
                         || valor.equals("4") || valor.equals("5") || valor.equals("6") || valor.equals("7")
-                        || valor.equals("8") || valor.equals("9")) {
-                    System.out.println("o valor registrado foi" + valor);
+                        || valor.equals("8") || valor.equals("9")) {                
                     return result.substring(0, 1);
                 } else {
                     valor = "-1";
@@ -180,7 +184,7 @@ public class CaptureTeste {
                             if (valor.equals("-1")) {
                                 valor = "-1";
                             } else {
-                              //  gr.inserirNumero(valor);
+                                gr.inserirNumero(valor);
                                 ThreadReadData3.sleep(52000);
                             }
 

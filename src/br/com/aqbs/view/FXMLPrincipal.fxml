@@ -28,7 +28,7 @@
           <Menu mnemonicParsing="false" text="Captura">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#capturarImagem" text="Número" />
-                  <MenuItem mnemonicParsing="false" onAction="#capturarImagem" text="Dealer" />
+                  <MenuItem mnemonicParsing="false" onAction="#capturarDealer" text="Dealer" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Inserir">
@@ -84,11 +84,19 @@
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <TextField fx:id="txfNumero" prefHeight="27.0" prefWidth="70.0" />
-                        <ComboBox fx:id="cmbDealer" onAction="#loadDealers" prefHeight="27.0" prefWidth="180.0" promptText="Dealler">
+                        <HBox prefHeight="30.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="txfDealer" prefWidth="110.0">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button mnemonicParsing="false" onMouseClicked="#setarDealer" text="OK" />
+                           </children>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
-                        </ComboBox>
+                        </HBox>
                         <HBox prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <CheckBox fx:id="chkAdd" mnemonicParsing="false" text="Add">

@@ -28,12 +28,13 @@ public class GerenciarRoleta {
     private List<Integer> backup = new ArrayList<>();
     private Som s = new Som();
     private FXMLGraficoConfiguracaoController gcc;
+    private String dealer;
 
     public GerenciarRoleta() {
         Thread threadDoPdf = new Thread(s);
         // threadDoPdf.start();
     }
-
+    
     public List<Numero> getNumeros() {
         List<Numero> list = numeroDAO.list();
         return list;
@@ -53,7 +54,7 @@ public class GerenciarRoleta {
         LocalDateTime timePoint = LocalDateTime.now();
         LocalDate theDate = timePoint.toLocalDate();
 
-        Numero n = new Numero(valor, pegarCor(v), timePoint.format(DateTimeFormatter.ISO_LOCAL_DATE), timePoint.format(DateTimeFormatter.ISO_LOCAL_TIME), "Simonia");
+        Numero n = new Numero(valor, pegarCor(v), timePoint.format(DateTimeFormatter.ISO_LOCAL_DATE), timePoint.format(DateTimeFormatter.ISO_LOCAL_TIME), dealer);
         numeroDAO.create(n);
     }
 
@@ -285,9 +286,7 @@ public class GerenciarRoleta {
             if( l.get(7) > 3) {
                 
 
-            }
-        
-        
+            }           
     }
 
     public String pegarCor(int valor) {
@@ -455,6 +454,10 @@ public class GerenciarRoleta {
 
         }
         return total;
+    }
+
+    public void setDealer(String result) {
+       this.dealer = result;
     }
 
 }
