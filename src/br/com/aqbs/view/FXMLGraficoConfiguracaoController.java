@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
  *
  * @author andreqbs
  */
-public class FXMLGraficoConfiguracaoController implements Initializable {
+public class FXMLGraficoConfiguracaoController extends FXMLAbstract implements Initializable {
 
     @FXML
     private VBox vbxApostas;

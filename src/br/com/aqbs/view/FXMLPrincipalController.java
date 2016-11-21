@@ -5,14 +5,13 @@
  */
 package br.com.aqbs.view;
 
-import br.com.aqbs.controller.CaptureTeste;
 import br.com.aqbs.controller.ControlerLeituraEscrita;
-import br.com.aqbs.controller.GerenciarDealer;
 import br.com.aqbs.controller.GerenciarRoleta;
-import br.com.aqbs.model.Dealer;
+import br.com.aqbs.controller.LeituraEscritaArquivo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.concurrent.Task;
@@ -26,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,6 +43,7 @@ import javafx.stage.Stage;
 public class FXMLPrincipalController implements Initializable {
 
     private ImageView imvImage;
+    
     @FXML
     private VBox vbxPrincipal;
     @FXML
@@ -78,12 +79,14 @@ public class FXMLPrincipalController implements Initializable {
 
     private FXMLConfiguracaoController fcc;
     private FXMLGraficoController gc;
-    private FXMLGraficoController gc2;
-    private CapturaController cc;
-    private GerenciarRoleta gr = new GerenciarRoleta();
-   
     private FXMLCapturaConfiguracaoController ccc;
     private FXMLGraficoConfiguracaoController gcc;
+
+    private GerenciarRoleta gr = new GerenciarRoleta();
+    private ControlerLeituraEscrita cle;
+    private CapturaController cc;
+    private LeituraEscritaArquivo lea ;
+
     private List<String> numerosSorteados = new ArrayList<>();
     private teste t;
     @FXML
@@ -96,13 +99,21 @@ public class FXMLPrincipalController implements Initializable {
     private Button btnPararCaptura;
     @FXML
     private TextField txfDealer;
+    @FXML
+    private Button btnInciarCaptura;
+    @FXML
+    private TextArea txaNumeros;
 
     // private CapturaController cc;
     /**
      * Initializes the controller class.
      */
+    
+   
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        lea =  new LeituraEscritaArquivo();
         try {
             load();
             loadNumeros();
@@ -133,28 +144,48 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void capturarImagem() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLCapturaConfiguracao.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            // stage.setMaximized(true);
-            stage.setScene(new Scene(root));
-            stage.show();
-            FXMLCapturaConfiguracaoController tt = fxmlLoader.<FXMLCapturaConfiguracaoController>getController();
-//            t = new teste();
-//            Thread x = new Thread(t);
-          //  tt.initData(x);
-            tt.inicializarLocal(fcc.getLocalCaptura(), fcc.getLocalJAR());
-//            ControlerLeituraEscrita a = new ControlerLeituraEscrita();
-//            ct = tt.getCaptureTeste();
-//            ct.initData(gr);
-            btnPararCaptura.setDisable(false);
-        } catch (IOException e) {
-            System.out.println("Erro ao gerar Frame de Captura");
-        }
-            
-            btnPararCaptura.setDisable(false);
-       
+        System.out.println(lea);
+        ccc = new FXMLCapturaConfiguracaoController();
+        ccc.initData(lea);
+        ccc.criarJanela("FXMLCapturaConfiguracao.fxml");
+        btnInciarCaptura.setDisable(false);
+
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLCapturaConfiguracao.fxml"));
+//            Parent root = (Parent) fxmlLoader.load();
+//            Stage stage = new Stage();         
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//           FXMLCapturaConfiguracaoController tt = fxmlLoader.<FXMLCapturaConfiguracaoController>getController();
+////            t = new teste();
+////            Thread x = new Thread(t);
+//            tt.initData(cle);
+////            tt.inicializarLocal(fcc.getLocalCaptura(), fcc.getLocalJAR());
+//             
+////            ct = tt.getCaptureTeste();
+////            ct.initData(gr);
+//         //   btnPararCaptura.setDisable(false);
+//        } catch (IOException e) {
+//            System.out.println("Erro ao gerar Frame de Captura");
+//        }
+        // btnPararCaptura.setDisable(false);
+    }
+    
+     @FXML
+    private void configurarGrafico(ActionEvent event) {
+        gcc = new FXMLGraficoConfiguracaoController();
+        gcc.criarJanela("FXMLGraficoConfiguracao.fxml");
+
+        //FXMLGraficoConfiguracaoController tt = fxmlLoader.<FXMLGraficoConfiguracaoController>getController();
+        // btnGerarGrafico.setDisable(false);
+    }
+
+    @FXML
+    private void configurarLocal(ActionEvent event) {
+    
+        ///fcc = new FXMLConfiguracaoController(); 
+        fcc.criarJanela("FXMLConfiguracao.fxml");
+
     }
 
     @FXML
@@ -195,7 +226,6 @@ public class FXMLPrincipalController implements Initializable {
 //            options.add(listar.get(i).getNome());
 //        }
 //        cmbDealer.setItems(options);
-
     }
 
     private void loadNumeros() {
@@ -235,23 +265,7 @@ public class FXMLPrincipalController implements Initializable {
     private void loadApostas(ActionEvent event) {
     }
 
-    @FXML
-    private void configurarGrafico(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLGraficoConfiguracao.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            // stage.setMaximized(true);
-            FXMLGraficoConfiguracaoController tt = fxmlLoader.<FXMLGraficoConfiguracaoController>getController();
-            gcc = tt;
-            stage.setScene(new Scene(root));
-            stage.show();
-            btnGerarGrafico.setDisable(false);
-        } catch (IOException e) {
-            System.out.println("Erro ao gerar Frame de Configuração");
-        }
-
-    }
+   
 
     @FXML
     private void gerarGraficoApostas(MouseEvent event) {
@@ -268,28 +282,31 @@ public class FXMLPrincipalController implements Initializable {
     }
 
     @FXML
-    private void configurarLocal(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLConfiguracao.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-            FXMLConfiguracaoController tt = fxmlLoader.<FXMLConfiguracaoController>getController();
-            fcc = tt;
-        } catch (IOException e) {
-            System.out.println("Erro ao gerar Frame de Configuração");
-        }
-
-    }
-
-    @FXML
     private void capturarDealer(ActionEvent event) {
     }
 
     @FXML
     private void setarDealer(MouseEvent event) {
         gr.setDealer(txfDealer.getText());
+    }
+
+    @FXML
+    private void iniciarCaptura(MouseEvent event) {
+        cle = new ControlerLeituraEscrita();
+        cle.definirTamanho(lea.getAltura(), lea.getLargura());
+        cle.setLocal(lea.getLocalImagem(), lea.getLocalJar());
+        cle.iniciarLeituraEscrita();
+
+    }
+
+    @FXML
+    private void enviarNumerosArea(MouseEvent event) {
+        String text = txaNumeros.getText();
+        
+            System.out.println(Arrays.toString(text.split(",")));
+            
+        
+       
     }
 
     private class teste extends Task<Void> {
@@ -303,7 +320,7 @@ public class FXMLPrincipalController implements Initializable {
         protected Void call() throws Exception {
             while (true) {
                 try {
-                   // valor = ct.getValor();
+                    valor = cle.getValor();
                     if (!valor.equals("-1")) {
                         gc.atualizarGrafico(valor);
                         numerosSorteados.add(0, valor);
@@ -399,7 +416,7 @@ public class FXMLPrincipalController implements Initializable {
                             } catch (NumberFormatException e) {
                                 System.out.println("Erro na geracao da cor");
                             }
-                         //   ct.setValor("-1");
+                            //   ct.setValor("-1");
                         }
                         Thread.sleep(55000);
                     }

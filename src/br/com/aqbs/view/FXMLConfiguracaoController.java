@@ -5,6 +5,7 @@
  */
 package br.com.aqbs.view;
 
+import br.com.aqbs.controller.LeituraEscritaArquivo;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author aqbs
  */
-public class FXMLConfiguracaoController implements Initializable {
+public class FXMLConfiguracaoController extends FXMLAbstract implements Initializable {
 
     @FXML
     private CheckBox chkWin;
@@ -33,36 +34,35 @@ public class FXMLConfiguracaoController implements Initializable {
     @FXML
     private TextField txfMacJar;
 
-    /**
-     * Initializes the controller class.
-     */
-    private String localCaptura;
-    private String localJAR;
+    private  LeituraEscritaArquivo lea;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+      
     }
 
+
+    
+   
     @FXML
     private void salvarPreferencias(MouseEvent event) {
+
+        String localCaptura = null;
+        String localJAR = null;
+        
         if (chkMac.isSelected()) {
             localCaptura = txfMacImagem.getText();
             localJAR = txfMacJar.getText();
         } else if (chkWin.isSelected()) {
             localCaptura = txfWinImagem.getText();
             localJAR = txfWinJar.getText();
-        } else {
-            System.out.println("Escolha uma opção");
         }
+        lea.setLocalJar(localJAR);
+        lea.setLocalImagem(localCaptura);
     }
 
-    public String getLocalCaptura() {
-        return localCaptura;
-    }
+  
 
-    public String getLocalJAR() {
-        return localJAR;
-    }
+   
 
 }

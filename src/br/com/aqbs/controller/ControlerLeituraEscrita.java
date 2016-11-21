@@ -22,15 +22,31 @@ public class ControlerLeituraEscrita {
         cc.showWindow(largura, altura);
 
     }
-    
+
+    public ControlerLeituraEscrita() {
+
+    }
+
+    public void definirTamanho(int largura, int altura) {
+        lc = new LeituraController();
+        cc = new CapturaController();
+        cc.showWindow(largura, altura);
+
+    }
+
     public void iniciarLeituraEscrita() {
         cc.capturaEstatico();
         lc.leituraNumero();
-        
+
     }
 
     public String getValor() {
         return lc.valorLido();
+    }
+
+    public void setLocal(String localImagem, String localJar) {
+        lc.setLocal(localImagem, localJar);
+
     }
 
 }

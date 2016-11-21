@@ -5,11 +5,8 @@
  */
 package br.com.aqbs.view;
 
-import br.com.aqbs.controller.CaptureTeste;
-import java.net.URL;
-import java.util.ResourceBundle;
+import br.com.aqbs.controller.LeituraEscritaArquivo;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -18,45 +15,29 @@ import javafx.scene.input.MouseEvent;
  *
  * @author andreqbs
  */
-public class FXMLCapturaConfiguracaoController implements Initializable {
+public class FXMLCapturaConfiguracaoController extends FXMLAbstract {
 
-    /**
-     * Initializes the controller class.
-     */
-    private CaptureTeste ct;
-    private Thread x;
     @FXML
     private TextField txfLargura;
     @FXML
     private TextField txfAltura;
     
-    private String localImagem;
-    private String localJar;
+    private  LeituraEscritaArquivo lea;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        ct = new CaptureTeste();
-    }
+    
 
     @FXML
     private void janelaCaptura(MouseEvent event) {
-        ct.mostrarJanela(Integer.valueOf(txfLargura.getText()), Integer.valueOf(txfAltura.getText()));
-        ct.setLocal(localImagem, localJar);
-        x.start();
+        lea.setAltura(Integer.valueOf(txfAltura.getText()));
+        lea.setLargura(Integer.valueOf(txfLargura.getText()));
+        lea.escritor(txfLargura.getText() + "," + txfAltura.getText());
 
     }
 
-    public CaptureTeste getCaptureTeste() {
-        return ct;
-    }
-
-    void initData(Thread x) {
-        this.x = x;
+    void initData(LeituraEscritaArquivo lea) {
+        this.lea = lea;
     }
     
-    void inicializarLocal(String localImagem, String localJar) {
-        this.localImagem = localImagem;
-        this.localJar = localJar;
-    }
 
+  
 }
